@@ -12,10 +12,10 @@ router.get("/", (req, res) => {
     });
 })
 
-const checkPassword = password => password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i) !== null
-const checkEmail = email => email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i) !== null
+const checkPassword = password => { if(password) return password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i) !== null}
+const checkEmail = email => { if(email) return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i) !== null }
 const checkPasswordConfirmation = (password, passwordConfirmation) => password === passwordConfirmation
-const checkUsername = username => username.match(/^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i) !== null
+const checkUsername = username => {if(username) return username.match(/^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i) !== null}
   
 router.post("/", (req, res) => {
     const data = {
@@ -39,6 +39,24 @@ router.post("/", (req, res) => {
                 
         })
     }
+    if(req.body.usernameLogin && req.body.passwordLogin){
+        User.authenticate(req.body.usernameLogin, req.body.passwordLogin, user =>{
+            if(user){
+                req.session.userId = user._id;
+                res.render("login_test", {"username": user.username})
+            }
+            else{
+                res.render("login_test", {"error": "Failed"})
+            }
+        })
+    }
+})
+
+router.get("/logout", (req, res) =>{
+    if(req.session)
+        req.session.destroy(err =>{
+            res.redirect("/login")
+        })
 })
 
 module.exports = router

@@ -32,6 +32,21 @@ UserSchema.pre('save', function(next){
   })
 })
 
+UserSchema.statics.authenticate = function (username, password, callback) {
+  User.findOne({ "username": username })
+    .exec(function (err, user) {
+      bcrypt.compare(password, user.password, function(err, result){
+        if (result === true){
+          return callback(user)
+        }
+        else
+          return callback(null)
+      })
+  })
+}
+
+
+
 const User = mongoose.model('User', UserSchema)
 
 module.exports = User;

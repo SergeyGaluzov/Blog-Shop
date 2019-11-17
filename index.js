@@ -1,7 +1,14 @@
-const express = require("express");
+const express = require("express")
 const app = express();
+const path = require('path')
+
 app.use(express.static(__dirname));
+
+app.set('views', path.join(__dirname, 'views'))
+app.set("view engine", "pug");
+
 app.get("/", function(request, response){
-  response.sendFile(__dirname + "/html/index.html");
-});
-app.listen(3000);
+  response.render("main");
+}); 
+
+app.listen(3000)

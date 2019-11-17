@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    <form name="register" method="POST">
+        <input name="email" type="text">
+        <input name="username" type="text">
+        <input name="password" type="text">
+        <input name="passwordConfirmation" type="text">
+        <input type="submit">
+    </form>
+    if username
+        h1 Hello, #{username ? username : "anon"}!
+    if error
+        h2 #{error}

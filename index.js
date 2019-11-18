@@ -15,6 +15,8 @@ app.use(session({
 
 const indexRouter = require('./routes/index')
 const loginRouter = require('./routes/login')
+const logoutRouter = require('./routes/logout')
+const registerRouter = require('./routes/register')
 const newpostRouter = require('./routes/newpost')
 const postsRouter = require('./routes/posts')
 
@@ -34,9 +36,11 @@ app.set('view engine', 'pug')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/newpost', newpostRouter);
+app.use('/', indexRouter)
+app.use('/login', loginRouter)
+app.use('/register', registerRouter)
+app.use('/logout', registerRouter)
+app.use('/newpost', newpostRouter)
 app.use('/posts', postsRouter)
 
 app.listen(3000);

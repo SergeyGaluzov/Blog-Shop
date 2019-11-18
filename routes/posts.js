@@ -7,7 +7,7 @@ const User = require('../models/user')
 const utils = require('../util/utils')
 
 
-const getPosts = (req, res) => {
+router.get('/', (req, res) => {
     Post.find({}, (err, posts) => {
         const postsData = posts.map(post => {
             return {
@@ -17,13 +17,9 @@ const getPosts = (req, res) => {
                 title: utils.capitalize(post.title),
             }
         })
-        console.log(postsData)
         res.render('posts', { "posts": postsData, })
         })
-    }
-
-router.post('/', getPosts)
-router.get('/', getPosts)
+    })
 
 
 

@@ -20,7 +20,7 @@ router.post('/', function(request, response){
       date: new Date(),
     };
     Post.create(postInfo, (err, post) => {
-      response.redirect(307, "/posts");
+      response.redirect("/posts");
     })
   })
 });

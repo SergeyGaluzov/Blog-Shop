@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    <div class="container">
+       <div class="row">
+          <div class="offset-lg-3 offset-md-2 col-xs-12 col-md-8 col-lg-6">
+             <form class="reg_form" method="POST">
+                <p class="main_text_form">Регистрация</p>
+                <p class="text_form">Введите свои данные для регистрации</p>
+                <hr>
+                <div><input name="username" type="text" placeholder="Введите имя" required></div>
+                <div><input name="email" type="text" placeholder="Электронная почта" required></div>
+                <hr>
+                <div><input name="password" type="password" placeholder="Пароль" required></div>
+                <div><input name="passwordConfirmation" type="password" placeholder="Подтвердите пароль" required></div>
+                <hr>
+                <input type="submit" class="btn btn-success"> 
+                <p>У Вас уже есть аккаунт?</p>
+                <a href="/login" class="btn btn-success">Войти</a>
+             </form>
+          </div>
+       </div>
+    </div>

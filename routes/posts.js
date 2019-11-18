@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
                 title: utils.capitalize(post.title),
             }
         })
-        res.render('posts', { "posts": postsData, })
+        res.render('blog/posts', { "posts": postsData, })
         })
     })
 

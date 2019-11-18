@@ -15,6 +15,7 @@ app.use(session({
 
 const indexRouter = require('./routes/index')
 const loginRouter = require('./routes/login')
+const postRouter = require('./routes/post')
 
 const mongoose = require('mongoose')
 
@@ -34,5 +35,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/newpost', postRouter);
 
 app.listen(3000);

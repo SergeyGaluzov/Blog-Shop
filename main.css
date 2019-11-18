@@ -1,65 +1,105 @@
-body {
-  background-color: green;
+a{
+    text-transform: uppercase;
+    color:white;
+    font-weight: 500;
+    display: block;
+    padding: 0.5rem;
 }
 
-.reg_form,.login_form,.create_post {
-  background-color: white;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-  border: 0.5px solid rgb(218, 215, 215);
+a:hover{
+    color:white;
+    text-decoration: none;
 }
 
-.create_post{
-  transition: all 0.3s ease-out;
+.container-fluid {
+  padding: 0;
 }
 
-.create_post:hover{
-  transform: scale(1.1);
+.col-lg-1,.col-lg-3{
+    transition: all 0.3s ease-out;
+    text-align: center;
+}
+.col-lg-1:hover{
+    transform: scale(1.2);
+    z-index: 999;
+    box-shadow: 0 0 200px rgba(0,0,0,0.5);
 }
 
-.main_text, .text, .main_text_form, .text_form{
-  text-align: center;
-  font-weight: 500;
-  font-size: 1rem;
+.main_picture{
+    position: relative;
 }
 
-.main_text, .main_text_form{
-  font-size: 1.5rem;
+.main_text {
+    position: absolute;
+    top:30%;
+    font-size: 3rem;
+    text-align: center;
+    padding: 0.5rem;
+    color:rgba(0, 0, 0, 0.788);
+    background-color:rgba(255,255,255,0.30);
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 0 0 200px rgba(0,0,0,0.5);
+}
+.main_text_on_page,.price{
+    font-size:3rem;
+    text-align: center;
+    margin-top: 1rem;
+    color:white;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
 }
 
-input {
-  width: 80%;
-  height: 2.5rem;
-  margin: 0.5rem;
-  border-radius: 0.5rem;
-  border: 0.5px solid rgb(218, 215, 215);
-  padding: 0.5rem;
-  box-shadow: 0 0 200px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  margin-left: 10%;
+.price{
+    font-size:1.1rem;
+}
+.header,.col-lg-1,.col-lg-3{
+    height: 3rem;
+    background-color:green;
+    z-index: 999;
 }
 
-textarea{
-  width: 100%;
-  height: 50rem;
-  border-radius: 0.5rem;
-  border: 0.5px solid rgb(218, 215, 215);
+.shop_icon{
+    width: 2rem;
+    text-align: center;
+    padding-top: 0.5rem;
 }
 
-textarea:hover{
-  box-shadow: 0 0 200px rgba(0, 0, 0, 0.1);
+.goods{
+    background-color:green;  
 }
 
-#add_file{
-  border:none;
-  width: 30%;
-  margin-bottom: none;
-  margin-left: auto;
-  margin-right: 0;
-  border:1px solid rgba(163, 155, 155, 0.753);
-  margin: none;
-  height: 3rem;
+.about_us_info,.additional_info,.my_map{
+    background-color:rgb(2, 114, 2);
 }
+
+.my_map{
+    background-color:#089208;   
+}
+
+.about_us_info div img{
+    float:left;
+    margin-right: 1rem;
+}
+
+.goods div img{
+    width: 80%;
+    height: 25rem;
+    text-align: center;
+    margin-left: 10%;
+    margin-bottom: 0.5rem;
+}
+
+.about_us_info_text{
+    background-color:rgba(16, 184, 16, 0.438);
+    padding: 1rem;
+    text-align: justify;
+    color:white;
+}
+
+.col-lg-9{
+    margin-left: 1rem;
+}
+
+
+

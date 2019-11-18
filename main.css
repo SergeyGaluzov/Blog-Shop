@@ -20,13 +20,13 @@ body {
   transform: scale(1.1);
 }
 
-.main_text,.text{
+.main_text, .text, .main_text_form, .text_form{
   text-align: center;
   font-weight: 500;
   font-size: 1rem;
 }
 
-.main_text{
+.main_text, .main_text_form{
   font-size: 1.5rem;
 }
 

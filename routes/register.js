@@ -6,7 +6,7 @@ const User = require("../models/user")
 
 router.get('/', (req, res) => {
     if(req.session.userId === undefined)
-        res.render('register')
+        res.render('authorization/register')
     else
         res.redirect('/newpost')
 })

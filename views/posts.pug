@@ -4,6 +4,7 @@ block content
   each post in posts
     h1 #{post['title']}
     h2 by #{post['username']}
-    h3 date published #{post['date']}
+    h3 date published: #{`${post['date'].day} ${post['date'].month} ${post['date'].year}`}
+    h3 at #{`${post['date'].hours}:${post['date'].minutes}`}
     p #{post['text']}
     hr

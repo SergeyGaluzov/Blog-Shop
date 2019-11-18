@@ -7,16 +7,7 @@ const User = require('../models/user')
 
 const getPosts = (req, res) => {
     Post.find({}, (err, posts) => {
-        const postMap = [];
-          posts.forEach(function(post){
-            const post_serialized = {
-              userID: post.userID, 
-              text: post.text,
-              date: post.date,
-            };
-            postMap.push(post_serialized);
-          })
-        res.render('posts', {"posts": postMap})
+        res.render('posts', {"posts": posts})
         })
     }
 

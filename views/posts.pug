@@ -2,5 +2,8 @@ extends layout
 
 block content
   each post in posts
+    h1 #{post['title']}
+    h2 by #{post['username']}
+    h3 date published #{post['date']}
     p #{post['text']}
     hr

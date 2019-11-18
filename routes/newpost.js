@@ -23,7 +23,6 @@ router.get('/', function(request, response) {
 });
 
 router.post('/', upload.single('postImage'), function(request, response){
-  console.log(request.file)
   User.findById(request.session.userId, (err, user) =>{
     const postInfo = {
       userID: user._id,

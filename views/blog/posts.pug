@@ -1,5 +1,8 @@
 extends ../layout
 
+block style
+  link(rel='stylesheet', type='text/css' href='../main.css')
+
 block content
   each post in posts
     h1 #{post['title']}
@@ -7,4 +10,6 @@ block content
     h3 date published: #{`${post['date'].day} ${post['date'].month} ${post['date'].year}`}
     h3 at #{`${post['date'].hours}:${post['date'].minutes}`}
     p #{post['text']}
+    if post['imagePath']
+      img(src=post['imagePath'])
     hr

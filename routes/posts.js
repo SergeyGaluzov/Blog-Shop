@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
                 date: utils.dateHandler(post.date),
                 text: post.text,
                 title: utils.capitalize(post.title),
+                imagePath: post.imagePath ? "../" + post.imagePath : undefined,
             }
         })
         res.render('blog/posts', { "posts": postsData, })

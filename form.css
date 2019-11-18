@@ -2,7 +2,8 @@ body {
   background-color: green;
 }
 
-.reg_form,.login_form,.create_post {
+.reg_form,
+.login_form {
   background-color: white;
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -12,12 +13,52 @@ body {
   border: 0.5px solid rgb(218, 215, 215);
 }
 
-.create_post{
+.main_text_form,
+.text_form {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.main_text_form {
+  font-size: 1.5rem;
+}
+
+input {
+  width: 80%;
+  height: 2.5rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  border: 0.5px solid rgb(218, 215, 215);
+  padding: 0.5rem;
+  box-shadow: 0 0 200px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  margin-left: 10%;
+}
+
+.reg_form,.login_form,.create_post,.error_form {
+  background-color: white;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  border: 0.5px solid rgb(218, 215, 215);
+}
+
+.create_post,.error_form{
   transition: all 0.3s ease-out;
 }
 
-.create_post:hover{
+.create_post,.error_form:hover{
   transform: scale(1.1);
+}
+
+.error_form:hover{
+  box-shadow: 0 0 100px rgba(255, 0, 0, 0.9); 
+  -webkit-transform: rotateZ(20deg);
+  -ms-transform: rotateZ(20deg);
+  transform: rotateZ(200deg); 
 }
 
 .main_text,.text{

@@ -1,10 +1,11 @@
-doctype html
-html(lang="en")
-  head
-    title "New post"
-  body
+extends layout
+
+block content
+  if isLoggedIn
     h1(style={'text-align': "center"}) Создать новый пост
     form(method="POST")
       p Напишите ниже текст поста
       textarea(name="post_text", cols="180", rows="30")
       input(type="submit", value="Отправить")
+  else
+    h1 Please Log In before creating a post.

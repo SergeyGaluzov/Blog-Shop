@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', indexRouter)
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
-app.use('/logout', registerRouter)
+app.use('/logout', logoutRouter)
 app.use('/newpost', newpostRouter)
 app.use('/posts', postsRouter)
 

@@ -4,8 +4,6 @@ const express = require('express')
 const router = express.Router()
 const User = require("../models/user")
 
-
-
 router.get("/", (req, res) => {
     User.findById(req.session.userId, (err, user) => {
         res.render("login_test", {"username": user ? user.username : "anon"})

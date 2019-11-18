@@ -1,6 +1,6 @@
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const normalizeTime = number => number.toString().length === 1 ? '0'.concate(number.toString()) : number
+const normalizeTime = number => number.toString().length === 1 ? '0'.concat(number.toString()) : number;
 
 const dateHandler = date => {
     return {

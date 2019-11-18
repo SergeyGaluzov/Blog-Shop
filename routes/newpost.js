@@ -7,7 +7,7 @@ const User = require('../models/user');
 
 
 router.get('/', function(request, response) { 
-  response.render("post_template.pug", {isLoggedIn: request.session.userId ? true : false});
+  response.render("blog/newpost", {isLoggedIn: request.session.userId ? true : false});
 });
 
 router.post('/', function(request, response){

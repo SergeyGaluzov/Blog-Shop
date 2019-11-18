@@ -1,19 +1,38 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const app = express();
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
-app.use(express.static(__dirname));
-app.set("view engine", "pug");
-app.get("/", function(request, response){
-  response.sendFile(__dirname + "/html/index.html");
-});
-app.get("/new_post", function(request, response){
-  response.render('post_template.pug');
-});
-app.post("/new_post", urlencodedParser, function(request, response) {
-  response.redirect(307, "/posts");
-});
-app.post("/posts", urlencodedParser, function(request, response) {
-  text = request.body.post_text
-  console.log(text);
-});
+'use strict'
+
+const express = require("express")
+const app = express()
+
+const path = require('path')
+const bodyParser = require('body-parser')
+
+const session = require('express-session')
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false,
+  }));
+
+const indexRouter = require('./routes/index')
+const loginRouter = require('./routes/login')
+
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb+srv://vlad:eRNJy7BR8PSSqYnd@cluster0-ip7bm.mongodb.net/test?retryWrites=true&w=majority')
+const database = mongoose.connection
+
+database.on('error', error => console.error(error))
+database.once('open', function(){})
+
+app.use(express.static(__dirname))
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use('/', indexRouter);
+app.use('/login', loginRouter);
+
+app.listen(3000);

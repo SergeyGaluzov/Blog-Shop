@@ -11,3 +11,6 @@ block content
     if post['imagePath']
       img(src=post['imagePath'])
     p #{post['text']}
+    if(post.userId === userId)
+        form(method='post')
+            input(type='submit' name='delete' value='Delete Post')

@@ -4,13 +4,10 @@ block style
   link(rel='stylesheet', type='text/css' href='../form.css')
 
 block content
-  each post in posts
-    h1 
-      a(href='/posts/' + post['postId']) #{post['title']}
+    h1 #{post['title']}
     h2 by #{post['username']}
     h3 date published: #{`${post['date'].day} ${post['date'].month} ${post['date'].year}`}
     h3 at #{`${post['date'].hours}:${post['date'].minutes}`}
-    p #{post['text']}
     if post['imagePath']
       img(src=post['imagePath'])
-    hr
+    p #{post['text']}

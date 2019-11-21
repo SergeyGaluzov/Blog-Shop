@@ -3,6 +3,7 @@ html
   head
     title #{title}
     link(rel='stylesheet', href='../bootstrap.css')
+    link(rel='stylesheet', href='../header.css')
     block style
   body
     div(class="container-fluid")
@@ -17,6 +18,7 @@ html
                 <div class="col-lg-2"><a href="/register">регистрация</a></div>
                else
                 <div class="offset-lg-2 col-lg-2"><a href="/profile">профиль</a></div>
+                <div class="col-lg-2"><a href="/logout">выйти</a></div>
             </div>
          </div>
       </section>

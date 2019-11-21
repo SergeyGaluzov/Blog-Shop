@@ -2,8 +2,7 @@ body {
   background-color: green;
 }
 
-.reg_form,
-.login_form {
+.reg_form,.login_form,.create_post,.error_form,.user_post,.post{
   background-color: white;
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -13,51 +12,33 @@ body {
   border: 0.5px solid rgb(218, 215, 215);
 }
 
-.main_text_form,
-.text_form {
-  text-align: center;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.main_text_form {
-  font-size: 1.5rem;
-}
-
-input {
-  width: 80%;
-  height: 2.5rem;
-  margin: 0.5rem;
-  border-radius: 0.5rem;
-  border: 0.5px solid rgb(218, 215, 215);
-  padding: 0.5rem;
-  box-shadow: 0 0 200px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  margin-left: 10%;
-}
-
-.reg_form,.login_form,.create_post,.error_form {
-  background-color: white;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-  border: 0.5px solid rgb(218, 215, 215);
-}
-
-.create_post,.error_form{
+.create_post,.user_post,.post{
   transition: all 0.3s ease-out;
 }
 
-.error_form:hover{
-  box-shadow: 0 0 100px rgba(255, 0, 0, 0.9); 
+.user_post:hover{
+  transform: scale(1.1);
+  border: 2px solid rgb(214, 210, 210);
 }
 
-.main_text,.text{
+.create_post:hover{
+  transform: scale(1.1);
+}
+
+.post:hover{
+  transform: scale(1.1);
+}
+
+.main_text,.text,.userName,.data{
   text-align: center;
   font-weight: 500;
   font-size: 1rem;
+}
+
+.userName,.data{
+  text-align: left;
+  text-transform: uppercase;
+  font-size:0.8rem;
 }
 
 .main_text{
@@ -96,4 +77,17 @@ textarea:hover{
   border:1px solid rgba(163, 155, 155, 0.753);
   margin: none;
   height: 3rem;
+}
+
+h1{
+  color:white;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-info,.btn-danger{
+  width: 30%;
+  margin-left: 35%;
 }

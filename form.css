@@ -50,15 +50,8 @@ input {
   transition: all 0.3s ease-out;
 }
 
-.create_post,.error_form:hover{
-  transform: scale(1.1);
-}
-
 .error_form:hover{
   box-shadow: 0 0 100px rgba(255, 0, 0, 0.9); 
-  -webkit-transform: rotateZ(20deg);
-  -ms-transform: rotateZ(20deg);
-  transform: rotateZ(200deg); 
 }
 
 .main_text,.text{

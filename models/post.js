@@ -36,6 +36,7 @@ const PostSchema = new mongoose.Schema({
   imagePath: {
     type: String,
     unique: true,
+    required: false,
   }
 });
 

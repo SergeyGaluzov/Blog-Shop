@@ -12,5 +12,5 @@ block content
     h3 at #{`${post['date'].hours}:${post['date'].minutes}`}
     p #{post['text']}
     if post['imagePath']
-      img(src=post['imagePath'])
+      img(src="../" + post['imagePath'])
     hr

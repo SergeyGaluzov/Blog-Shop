@@ -12,13 +12,15 @@ block content
                 <p class="main_text">#{post['title']}</p>
                 <hr>
                 if post['imagePath']
-                  img(src=post['imagePath'] width="100%")
+                  img(src="../" + post['imagePath'] width="100%")
                 <p>#{post['text']}</p>
                 <hr>
                 <p class="userName">#{post['username']}</p>
                 <p class="data">Опубликовано: #{`${post['date'].hours}:${post['date'].minutes}, ${post['date'].day} ${post['date'].month} ${post['date'].year}`}</p>
-                <input type= "button" class ="btn btn-info" value = "Редактировать">
-                <input type= "button" class ="btn btn-danger" value = "Удалить">
+                if(post.userId === userId)
+                  form(method='post')
+                    input(type='submit' name='edit' class ="btn btn-info" value='Редактировать')
+                    input(type='submit' name='delete' class ="btn btn-danger" value='Удалить')
               </div>
            </div>
         </div>

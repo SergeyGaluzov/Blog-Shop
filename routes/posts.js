@@ -21,14 +21,14 @@ const getPostData = post => {
 router.get('/', (req, res) => {
     Post.find({}, (err, posts) => {
         const postsData = posts.map(post => getPostData(post))
-        res.render('blog/posts', { "posts": postsData, })
+        res.render('blog/posts', { "posts": postsData, isLoggedIn: req.session.userId ? true : false })
     })
 })
 
 router.get('/:postId', (req, res) => {
     Post.findById(req.params.postId, (error, post) =>{
         const postData = getPostData(post)
-        res.render('blog/post', {post: postData, userId: req.session.userId});
+        res.render('blog/post', {post: postData, isLoggedIn: req.session.userId ? true : false });
     })
 })
 

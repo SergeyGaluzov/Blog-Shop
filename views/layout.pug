@@ -5,5 +5,19 @@ html
     link(rel='stylesheet', href='../bootstrap.css')
     block style
   body
-    block header
-    block content
+    div(class="container-fluid")
+      <section>
+         <div class="header">
+            <div class="row">
+               <div class="col-lg-2"><a href="/">главная</a></div>
+               <div class="col-lg-2"><a href="/shop">магазин</a></div>
+               <div class="col-lg-2"><a href="/posts">блог</a></div>
+               unless isLoggedIn
+                <div class="offset-lg-2 col-lg-2"><a href="/login">войти</a></div>
+                <div class="col-lg-2"><a href="/register">регистрация</a></div>
+               else
+                <div class="offset-lg-2 col-lg-2"><a href="/profile">профиль</a></div>
+            </div>
+         </div>
+      </section>
+      block content

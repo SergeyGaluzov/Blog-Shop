@@ -12,7 +12,7 @@ const getPostData = post => {
         date: utils.dateHandler(post.date),
         text: post.text,
         title: utils.capitalize(post.title),
-        imagePath: post.imagePath ? "../" + post.imagePath : undefined,
+        imagePath: post.imagePath ? post.imagePath : null,
         postId: post._id,
         userId: post.userID,
     }
@@ -37,9 +37,7 @@ router.post('/:postId', (req, res) =>{
         Post.findByIdAndDelete(req.params.postId, (err, post) =>{
             const imagePath = getPostData(post).imagePath
             if(imagePath){
-                fs.unlink(imagePath, (err) => {
-                    res.redirect('/posts');
-                })
+                fs.unlinkSync(imagePath)
             }
             res.redirect('/posts');
         })

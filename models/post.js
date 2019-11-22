@@ -1,5 +1,6 @@
 'use strict';
-const mongoose = require('mongoose');
+
+const mongoose = require('mongoose')
 
 const PostSchema = new mongoose.Schema({
   title: {
@@ -31,6 +32,11 @@ const PostSchema = new mongoose.Schema({
     unique: false,
     required: true,
     trim: true
+  },
+  imagePath: {
+    type: String,
+    unique: true,
+    required: false,
   }
 });
 

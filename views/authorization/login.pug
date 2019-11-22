@@ -1,20 +1,21 @@
 extends ../layout
 
+block style
+  link(rel='stylesheet', type='text/css' href='../form.css')
+
 block content
-    <div class="container">
-       <div class="row">
-          <div class="offset-lg-3 offset-md-2 col-xs-12 col-md-8 col-lg-6">
-             <form class="login_form" method="POST">
-                <p class="main_text_form">Вход</p>
-                <p class="text_form">Введите свои данные для входа</p>
-                <hr>
-                <div><input name="username" type="text" placeholder="Введите ваше имя"></div>
-                <div><input name="password" type="password" placeholder="Введите ваш пароль"></div>
-                <hr>
-                <input type="submit" class="btn btn-success"> 
-                <p>У Вас нет аккаунта?</p>
-                <a href="/register" class="btn btn-success">Создать</a>
-             </form>
-          </div>
-       </div>
-    </div>    
+   <div class="row">
+      <div class="offset-lg-3 offset-md-2 col-xs-12 col-md-8 col-lg-6">
+         <form class="login_form" method="POST">
+            <p class="main_text_form">Вход</p>
+            <p class="text_form">Введите свои данные для входа</p>
+            <hr>
+            <div><input name="username" type="text" placeholder="Введите ваше имя"></div>
+            <div><input name="password" type="password" placeholder="Введите ваш пароль"></div>
+            <hr>
+            <input type="submit" class="btn btn-success"> 
+            <p>У Вас нет аккаунта?</p>
+            <a href="/register" class="btn btn-success">Создать</a>
+         </form>
+      </div>
+   </div>

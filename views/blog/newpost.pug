@@ -1,21 +1,29 @@
 extends ../layout
 
+block style
+  link(rel='stylesheet', type='text/css' href='../form.css')
+
 block content
   if isLoggedIn
-    <div class="container-fluid">
-       <div class="row">
-          <div class="offset-lg-1 col-lg-10">
-             <form class="create_post" method="POST">
-                <p class="main_text">Создать новую запись</p>
-                <input name="title" type="text" placeholder="Введите название" class="main_text">
-                <hr>
-                <textarea name="text"></textarea>
-                <p>Добавить файл</p>
-                <p><input name="image" id="add_file" type="file"></p>
-                <button class="btn btn-success">Отправить</button>
-             </form>
-          </div>
+    <div class="row">
+       <div class="offset-lg-1 col-lg-10">
+          <form class="create_post" method="POST" enctype="multipart/form-data">
+             <p class="main_text">Создать новую запись</p>
+             <input name="title" type="text" placeholder="Введите название" class="main_text">
+             <hr>
+             <textarea name="text"></textarea>
+             <p>Добавить файл</p>
+             <p><input name="postImage" id="add_file" type="file" accept="accept="image/*"></p>
+             <button class="btn btn-success">Отправить</button>
+          </form>
        </div>
     </div>
   else
-    h1 Вы кто такие я вас не звал
+    <div class="row">
+       <div class="offset-lg-3 col-lg-6">
+          <div class="error_form">
+             <p class="main_text">Упс... Вы не вошли в систему :(</p>
+             <a href="/login" class="btn btn-success">Войти</a>
+          </div>
+       </div>
+    </div>

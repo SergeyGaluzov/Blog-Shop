@@ -6,7 +6,7 @@ const User = require("../models/user")
 
 router.get("/", (req, res) => {
     if(req.session.userId === undefined)
-        res.render('authorization/login')
+        res.render('authorization/login', { isLoggedIn: req.session.userId ? true : false })
     else
         res.redirect('/newpost')
 })
@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
                 res.redirect("/newpost")
             }
             else{
-                res.render("authorization/login")
+                res.render("authorization/login", { isLoggedIn: req.session.userId ? true : false })
             }
         })
     }

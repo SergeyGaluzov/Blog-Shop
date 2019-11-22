@@ -13,6 +13,7 @@ app.use(session({
     saveUninitialized: false,
   }));
 
+
 const indexRouter = require('./routes/index')
 const loginRouter = require('./routes/login')
 const logoutRouter = require('./routes/logout')
@@ -21,7 +22,6 @@ const newpostRouter = require('./routes/newpost')
 const postsRouter = require('./routes/posts')
 
 const mongoose = require('mongoose')
-
 mongoose.connect('mongodb+srv://vlad:eRNJy7BR8PSSqYnd@cluster0-ip7bm.mongodb.net/test?retryWrites=true&w=majority')
 const database = mongoose.connection
 

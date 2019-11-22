@@ -8,10 +8,10 @@ const User = require('../models/user')
 const multer  = require('multer')
 const storage = multer.diskStorage({
   destination: (req, file, callback) =>{
-    callback(null, "img/uploaded/")
+    callback(null, 'img/uploaded/')
   },
   filename: (req, file, callback) =>{
-    const splittedType = file.mimetype.split("/")
+    const splittedType = file.mimetype.split('/')
     const extension = splittedType[splittedType.length - 1]
     callback(null, Date.now() + '.' + extension)
   }
@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 router.get('/', function(req, response) { 
-  response.render("blog/newpost", {isLoggedIn: req.session.userId ? true : false});
+  response.render('blog/newpost', {isLoggedIn: req.session.userId ? true : false});
 });
 
 router.post('/', upload.single('postImage'), function(req, response){
@@ -30,10 +30,10 @@ router.post('/', upload.single('postImage'), function(req, response){
       text: req.body.text,
       title: req.body.title,
       date: new Date(),
-      imagePath: req.file ? req.file.path : undefined,
+      imagePath: req.file ? req.file.path : null,
     };
     Post.create(postInfo, (err, post) => {
-      response.redirect("/posts");
+      response.redirect('/posts');
     })
   })
 });

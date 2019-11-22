@@ -21,7 +21,7 @@ const getPostData = post => {
 router.get('/', (req, res) => {
     Post.find({}, (err, posts) => {
         const postsData = posts.map(post => getPostData(post))
-        res.render('blog/posts', { "posts": postsData, isLoggedIn: req.session.userId ? true : false })
+        res.render('blog/posts', { 'posts': postsData, isLoggedIn: req.session.userId ? true : false })
     })
 })
 

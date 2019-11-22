@@ -5,6 +5,8 @@ const router = express.Router()
 const Post = require('../models/post')
 const User = require('../models/user')
 
+const utils = require('../util/utils')
+
 const multer  = require('multer')
 const storage = multer.diskStorage({
   destination: (req, file, callback) =>{
@@ -25,14 +27,14 @@ router.get('/', function(req, response) {
 router.post('/', upload.single('postImage'), function(req, response){
   User.findById(req.session.userId, (err, user) =>{
     const postInfo = {
-      userID: user._id,
-      username: user.username, 
+      user: user, 
       text: req.body.text,
-      title: req.body.title,
-      date: new Date(),
-      imagePath: req.file ? req.file.path : null,
+      title: utils.capitalize(req.body.title),
+      date: utils.dateHandler(new Date()),
+      imagePath: req.file ? req.file.path : undefined,
     };
     Post.create(postInfo, (err, post) => {
+      console.log(err)
       response.redirect('/posts');
     })
   })

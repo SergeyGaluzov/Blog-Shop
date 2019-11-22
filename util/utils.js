@@ -1,12 +1,14 @@
+'use strict'
+
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-const normalizeTime = number => number.toString().length === 1 ? '0'.concat(number.toString()) : number
+const normalizeTime = number => number.toString().length === 1 ? '0'.concat(number.toString()) : number.toString()
 
 const dateHandler = date => {
     return {
-    'day': date.getDate(),
+    'day': date.getDate().toString(),
     'month': months[date.getMonth()],
-    'year': date.getFullYear(),
+    'year': date.getFullYear().toString(),
     'hours': normalizeTime(date.getHours()),
     'minutes': normalizeTime(date.getMinutes()),
     }

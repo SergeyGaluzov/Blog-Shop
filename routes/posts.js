@@ -29,6 +29,9 @@ router.post('/:postId', (req, res) =>{
             res.redirect('/posts');
         })
     }
+    else if (req.body.edit) {
+        res.redirect('/editpost/' + req.params.postId);
+    }
 })
 
 module.exports = router

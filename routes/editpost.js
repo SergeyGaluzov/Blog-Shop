@@ -35,7 +35,7 @@ router.post('/:postId', upload.single('postImage'), function(req, response){
       date: utils.dateHandler(new Date()),
       imagePath: req.file ? req.file.path.replace('static\\', '') : undefined,
     };
-    Post.findByIdAndUpdate(req.params.postId, postedit, {new: true}, (err,res) => {response.redirect('posts');});
+    Post.findByIdAndUpdate(req.params.postId, postedit, {new: true}, (err,res) => {response.redirect('/posts');});
   })
 });
 

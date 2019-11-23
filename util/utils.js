@@ -4,9 +4,9 @@ const normalizeTime = number => number.toString().length === 1 ? '0'.concat(numb
 
 const dateHandler = date => {
     return {
-    'day': date.getDate(),
+    'day': date.getDate().toString(),
     'month': months[date.getMonth()],
-    'year': date.getFullYear(),
+    'year': date.getFullYear().toString(),
     'hours': normalizeTime(date.getHours()),
     'minutes': normalizeTime(date.getMinutes()),
     }

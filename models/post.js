@@ -15,28 +15,20 @@ const PostSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  username:{
-    type: String,
-    unique: false,
+  user: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'User',
     required: true,
-    trim: true
-  },
-  userID: {
-    type: String,
-    unique: false,
-    required: true,
-    trim: true
   },
   date: {
-    type: Date,
-    unique: false,
-    required: true,
-    trim: true
+    day: { type: String, required: true },
+    month: { type: String, required: true },
+    year: { type: String, required: true },
+    hours: { type: String, required: true },
+    minutes: { type: String, required: true },
   },
   imagePath: {
     type: String,
-    unique: true,
-    required: false,
   }
 });
 

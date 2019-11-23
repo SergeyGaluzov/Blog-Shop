@@ -14,8 +14,8 @@ block content
               img(src="../" + post['imagePath'] width="100%")
             <p>#{post['text']}</p>
             <hr>
-            <p class="userName">#{post['username']}</p>
-            <p class="data">Опубликовано: #{`${post['date'].hours}:${post['date'].minutes}, ${post['date'].day} ${post['date'].month} ${post['date'].year}`}</p>
+            <p class="userName">#{post['user']['username']}</p>
+            <p class="data">Опубликовано: #{`${post['date']['hours']}:${post['date']['minutes']}, ${post['date']['day']} ${post['date']['month']} ${post['date']['year']}`}</p>
             if(post.userId === userId)
               form(method='post')
                 input(type='submit' name='edit' class ="btn btn-info" value='Редактировать')

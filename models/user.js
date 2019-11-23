@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
 const UserSchema = new mongoose.Schema({
@@ -34,7 +34,7 @@ UserSchema.pre('save', function(next){
 })
 
 UserSchema.statics.authenticate = function (username, password, callback) {
-  User.findOne({ "username": username })
+  User.findOne({ 'username': username })
     .exec(function (err, user) {
       if(user === null)
         return callback(null)

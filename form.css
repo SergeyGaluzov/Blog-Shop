@@ -2,7 +2,7 @@ body {
   background-color: green;
 }
 
-.reg_form,.login_form,.create_post,.error_form,.user_post,.post,.profile{
+.reg_form,.login_form,.create_post,.error_form,.user_post,.post,.profile,.user_commet{
   background-color: white;
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -68,6 +68,10 @@ textarea:hover{
   box-shadow: 0 0 200px rgba(0, 0, 0, 0.1);
 }
 
+.user_commet_text{
+  height: 7rem;
+}
+
 #add_file{
   border:none;
   width: 30%;
@@ -98,6 +102,11 @@ h1{
   padding: 0.2rem;
 }
 
+.myBtnSuccess{
+  width: 20%; 
+  margin-left:40%;
+}
+
 table,td,tr{
   border:1px solid rgb(177, 175, 175);
   width: 100%;
@@ -112,4 +121,8 @@ td{
   height: 1rem;
   margin-right: auto;
   margin-left: auto;
+}
+
+#resultWar,#resultCout{
+  color:red;
 }

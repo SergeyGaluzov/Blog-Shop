@@ -1,0 +1,105 @@
+a{
+    text-transform: uppercase;
+    color:white;
+    font-weight: 500;
+    display: block;
+    padding: 0.5rem;
+}
+
+a:hover{
+    color:white;
+    text-decoration: none;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.col-lg-1,.col-lg-3{
+    transition: all 0.3s ease-out;
+    text-align: center;
+}
+.col-lg-1:hover{
+    transform: scale(1.2);
+    z-index: 999;
+    box-shadow: 0 0 200px rgba(0,0,0,0.5);
+}
+
+.main_picture{
+    position: relative;
+}
+
+.main_text {
+    position: absolute;
+    top:30%;
+    font-size: 3rem;
+    text-align: center;
+    padding: 0.5rem;
+    color:rgba(0, 0, 0, 0.788);
+    background-color:rgba(255,255,255,0.30);
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 0 0 200px rgba(0,0,0,0.5);
+}
+.main_text_on_page,.price{
+    font-size:3rem;
+    text-align: center;
+    margin-top: 1rem;
+    color:white;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.price{
+    font-size:1.1rem;
+}
+.header,.col-lg-1,.col-lg-3{
+    height: 3rem;
+    background-color:green;
+    z-index: 999;
+}
+
+.shop_icon{
+    width: 2rem;
+    text-align: center;
+    padding-top: 0.5rem;
+}
+
+.goods{
+    background-color:green;  
+}
+
+.about_us_info,.additional_info,.my_map{
+    background-color:rgb(2, 114, 2);
+}
+
+.my_map{
+    background-color:#089208;   
+}
+
+.about_us_info div img{
+    float:left;
+    margin-right: 1rem;
+}
+
+.goods div img{
+    width: 80%;
+    height: 25rem;
+    text-align: center;
+    margin-left: 10%;
+    margin-bottom: 0.5rem;
+}
+
+.about_us_info_text{
+    background-color:rgba(16, 184, 16, 0.438);
+    padding: 1rem;
+    text-align: justify;
+    color:white;
+}
+
+.col-lg-9{
+    margin-left: 1rem;
+}
+
+
+

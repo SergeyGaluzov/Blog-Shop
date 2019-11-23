@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Персональная страница</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../bootstrap.css" />
+        <link rel="stylesheet" href="../form.css">
+    </head>
+    <body>
+        <!-- простите меня за эту табличку, она мягко говоря не очень, но я так заебалась ее равнять, мур -->
+        <div class="container-fluid">
+            <section>
+                <div class="profile">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="main_text">Имя</p>
+                            <table>
+                                <tr>
+                                  <td>Имя пользователя</td>
+                                  <td>Email</td>
+                                  <td>Может ли оставлять посты ?</td>
+                                  <td>Может ли управлять магазином ?</td>
+                                  <td>Может ли редактировать посты других пользоателей ?</td>
+                                </tr>
+                                <tr>
+                                    <td>userName</td>
+                                    <td>userEmail</td>
+                                    <td>
+                                        <input type="radio" class="radioBtn"> Да
+                                        <input type="radio" class="radioBtn"> Нет
+                                    </td>
+                                    <td>
+                                        <input type="radio" class="radioBtn"> Да
+                                        <input type="radio" class="radioBtn"> Нет
+                                    </td>
+                                    <td>
+                                        <input type="radio" class="radioBtn"> Да
+                                        <input type="radio" class="radioBtn"> Нет
+                                    </td>
+                                </tr>
+                            </table> <br>
+                            <table>
+                                  <tr>
+                                    <td>ID продукта</td>
+                                    <td>Название продукта</td>
+                                    <td>Тип продукта</td>
+                                    <td>Цена</td>
+                                    <td>Сколько в наличии</td>
+                                    <td>Редактировать</td>
+                                    <td>Удалить</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product name</td>
+                                    <td>Product type</td>
+                                    <td>Price</td>
+                                    <td>Number</td>
+                                    <td><button class="btn btn-info btnTable">Редактировать</button></td>
+                                    <td><button class="btn btn-danger btnTable">Удалить</button></td>
+                                </tr>
+                            </table> <br>
+                            <table>
+                                <tr>
+                                    <td>Имя пользователя</td>
+                                    <td>Ссылка на продукт</td>
+                                    <td>Подтвердить</td>
+                                </tr>
+                                <tr>
+                                    <td>userName</td>
+                                    <td>linkProduct</td>
+                                    <td><button class="btn btn-success btnTable">Подтвердить</button></td>
+                                </tr> 
+                            </table> <br>
+                            <table>
+                                <tr>
+                                    <td>Cообщение</td>
+                                    <td>Ccылка на сообщение</td>
+                                    <td>Редактировать</td>
+                                    <td>Удалить</td>
+                                </tr>
+                                <tr>
+                                    <td>Message</td>
+                                    <td>Link</td>
+                                    <td><button class="btn btn-info btnTable">Редактировать</button></td>
+                                    <td><button class="btn btn-danger btnTable">Удалить</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

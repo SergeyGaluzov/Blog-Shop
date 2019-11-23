@@ -1,0 +1,10 @@
+input{
+    margin-left: none;
+}
+
+.radioBtn{
+    width: 1rem;
+    height: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+}

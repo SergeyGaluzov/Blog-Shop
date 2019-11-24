@@ -1,7 +1,7 @@
 extends ../layout
 
 block style
-  link(rel='stylesheet', type='text/css' href='../css/form.css')
+  link(rel='stylesheet', type='text/css' href='/css/form.css')
 
 block content
   each post in posts
@@ -12,5 +12,5 @@ block content
     h3 at #{`${post['date'].hours}:${post['date'].minutes}`}
     p #{post['text']}
     if post['imagePath']
-      img(src="../" + post['imagePath'])
+      img(src=post['imagePath'])
     hr

@@ -28,7 +28,7 @@ const database = mongoose.connection
 database.on('error', error => console.error(error))
 database.once('open', function(){})
 
-app.use(express.static(__dirname))
+app.use(express.static(path.join(__dirname, '/static')))
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')

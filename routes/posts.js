@@ -56,15 +56,16 @@ router.post('/:postId/edit', upload.single('postImage'), function(req, res){
     });
 })
 
-router.post('/:postId', (req, res) =>{
-    if(req.body.delete){
-        Post.findById(req.params.postId, (err, post) =>{
-            Post.deleteOne(post, (err) =>{
-                res.redirect('/posts');
-            })
+router.get('/:postId/delete', (req, res) =>{
+    Post.findById(req.params.postId, (err, post) =>{
+        Post.deleteOne(post, (err) =>{
+            res.redirect('/posts');
         })
-    }
-    else if(req.body.comment){
+    })
+})
+
+router.post('/:postId', (req, res) =>{
+    if(req.body.comment){
         Post.findById(req.params.postId, (err, post) =>{
             const comment = new Comment({
                 user: req.session.userId,
@@ -75,13 +76,13 @@ router.post('/:postId', (req, res) =>{
             comment.save((err, comment) => {
                 post.comments.push(comment)
                 post.save((err, postUpdated) =>{
-                    res.redirect('/posts/' + postUpdated._id)
+                    res.redirect('/posts/' + req.params.postId)
                 })
             })
         })
     }
-    else if (req.body.edit) {
-        res.redirect(req.params.postId + '/edit');
+    else{
+        res.redirect('/posts/' + req.params.postId)
     }
 })
 

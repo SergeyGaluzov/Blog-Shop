@@ -14,7 +14,7 @@ block content
              <textarea name="text">#{post['text']}</textarea>
              <p>Изменить файл</p>
              if post['imagePath']
-              img(src="post['imagePath'] width="100%")
+              img(src=post['imagePath'] width="100%")
              <p><input name="postImage" id="add_file" type="file" accept="accept="image/*"></p>
              <button class="btn btn-success">Отправить</button>
           </form>

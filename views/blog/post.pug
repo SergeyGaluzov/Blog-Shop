@@ -17,9 +17,10 @@ block content
             <p class="userName">#{post['user']['username']}</p>
             <p class="data">Опубликовано: #{`${post['date']['hours']}:${post['date']['minutes']}, ${post['date']['day']} ${post['date']['month']} ${post['date']['year']}`}</p>
             if(isLoggedIn && post.userId === userId)
-              form(method='post')
-                input(type='submit' name='edit' class ="btn btn-info" value='Редактировать')
-                input(type='submit' name='delete' class ="btn btn-danger" value='Удалить')
+                a(href="/posts/"+ post['_id'] + "/edit") 
+                  input(type='button' name='edit' class ="btn btn-info" value='Редактировать')
+                a(href="/posts/"+ post['_id'] + "/delete") 
+                  input(type='button' name='delete' class ="btn btn-danger" value='Удалить')
           </div>
        </div>
     </div>

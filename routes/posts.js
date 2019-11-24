@@ -44,19 +44,17 @@ router.get('/:postId/edit', function(req, response) {
 });
 
 router.post('/:postId/edit', upload.single('postImage'), function(req, res){
-    User.findById(req.session.userId, (err, user) =>{
-        Post.findById(req.params.postId, (err, post) => {
-            const postEdit = {
-                title: utils.capitalize(req.body.title),
-                text: req.body.text,
-                imagePath: req.file ? req.file.path.replace('static', '') : post.imagePath, 
-            };
-            Post.updateOne(post, postEdit, (err, post) => {
-                res.redirect('/posts');
-            })
-        });
-    })
-  });
+    Post.findById(req.params.postId, (err, post) => {
+        const postEdit = {
+            title: utils.capitalize(req.body.title),
+            text: req.body.text,
+            imagePath: req.file ? req.file.path.replace('static', '') : post.imagePath, 
+        };
+        Post.updateOne(post, postEdit, (err, post) => {
+            res.redirect('/posts');
+        })
+    });
+})
 
 router.post('/:postId', (req, res) =>{
     if(req.body.delete){

@@ -1,7 +1,7 @@
 extends ../layout
 
 block style
-  link(rel='stylesheet', type='text/css' href='../css/form.css')
+  link(rel='stylesheet', type='text/css' href='/css/form.css')
 
 block content
   <section>
@@ -11,7 +11,7 @@ block content
             <p class="main_text">#{post['title']}</p>
             <hr>
             if post['imagePath']
-              img(src="../" + post['imagePath'] width="100%")
+              img(src=post['imagePath'] width="100%")
             <p>#{post['text']}</p>
             <hr>
             <p class="userName">#{post['user']['username']}</p>

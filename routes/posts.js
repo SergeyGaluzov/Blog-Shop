@@ -22,7 +22,7 @@ router.get('/:postId', (req, res) => {
 router.post('/:postId', (req, res) =>{
     if(req.body.delete){
         Post.findByIdAndDelete(req.params.postId, (err, post) =>{
-            const imagePath = post.imagePath
+            const imagePath = 'static\\' + post.imagePath
             if(imagePath){
                 fs.unlinkSync(imagePath)
             }

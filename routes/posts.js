@@ -46,10 +46,8 @@ router.get('/:postId/edit', function(req, response) {
 router.post('/:postId/edit', upload.single('postImage'), function(req, response){
     User.findById(req.session.userId, (err, user) =>{
       const postedit = {
-        user: user, 
         title: utils.capitalize(req.body.title),
         text: req.body.text,
-        date: utils.dateHandler(new Date()),
         imagePath: req.file ? req.file.path.replace('static\\', '') : undefined,
       };
       Post.findByIdAndUpdate(req.params.postId, postedit, {new: true}, (err,res) => {response.redirect('/posts');});

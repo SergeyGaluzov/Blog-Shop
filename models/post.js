@@ -20,6 +20,7 @@ const PostSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  comments: [{type: mongoose.SchemaTypes.ObjectId, ref: 'Comment'}],
   date: {
     day: { type: String, required: true },
     month: { type: String, required: true },

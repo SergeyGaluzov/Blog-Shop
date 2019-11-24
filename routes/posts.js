@@ -54,7 +54,7 @@ router.post('/:postId/edit', upload.single('postImage'), function(req, response)
 router.post('/:postId', (req, res) =>{
     if(req.body.delete){
         Post.findByIdAndDelete(req.params.postId, (err, post) =>{
-            const imagePath = getPostData(post).imagePath
+            const imagePath = post.imagePath
             if(imagePath){
                 fs.unlinkSync(imagePath)
             }

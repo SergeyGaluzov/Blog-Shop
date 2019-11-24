@@ -10,7 +10,7 @@ const utils = require('../util/utils')
 const multer  = require('multer')
 const storage = multer.diskStorage({
   destination: (req, file, callback) =>{
-    callback(null, 'img/uploaded/')
+    callback(null, 'static/img/uploaded/')
   },
   filename: (req, file, callback) =>{
     const splittedType = file.mimetype.split('/')

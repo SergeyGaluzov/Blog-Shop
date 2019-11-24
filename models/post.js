@@ -42,5 +42,6 @@ PostSchema.pre('findOneAndDelete', function(next){
   Post.model('Comment').deleteMany({ post: this.getFilter()._id }, next)
 })
 
+
 const Post = mongoose.model('Post', PostSchema);
 module.exports = Post;

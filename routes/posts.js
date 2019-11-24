@@ -10,7 +10,7 @@ const utils = require('../util/utils')
 const multer  = require('multer')
 const storage = multer.diskStorage({
   destination: (req, file, callback) =>{
-    callback(null, 'img/uploaded/')
+    callback(null, 'static/img/uploaded/')
   },
   filename: (req, file, callback) =>{
     const splittedType = file.mimetype.split('/')
@@ -43,14 +43,18 @@ router.get('/:postId/edit', function(req, response) {
     })
 });
 
-router.post('/:postId/edit', upload.single('postImage'), function(req, response){
+router.post('/:postId/edit', upload.single('postImage'), function(req, res){
     User.findById(req.session.userId, (err, user) =>{
-      const postedit = {
-        title: utils.capitalize(req.body.title),
-        text: req.body.text,
-        imagePath: req.file ? req.file.path.replace('static\\', '') : undefined,
-      };
-      Post.findByIdAndUpdate(req.params.postId, postedit, {new: true}, (err,res) => {response.redirect('/posts');});
+        Post.findById(req.params.postId, (err, post) => {
+            const postEdit = {
+                title: utils.capitalize(req.body.title),
+                text: req.body.text,
+                imagePath: req.file ? req.file.path.replace('static', '') : post.imagePath, 
+            };
+            Post.updateOne(post, postEdit, (err, post) => {
+                res.redirect('/posts');
+            })
+        });
     })
   });
 

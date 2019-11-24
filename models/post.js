@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose')
+const fs = require('fs')
 
 const PostSchema = new mongoose.Schema({
   title: {
@@ -32,6 +33,14 @@ const PostSchema = new mongoose.Schema({
     type: String,
   }
 });
+
+PostSchema.pre('findOneAndDelete', function(next){
+  const imagePath = this.getFilter().imagePath
+  if(imagePath){
+     fs.unlinkSync('static\\' + imagePath)
+  }
+  Post.model('Comment').deleteMany({ post: this.getFilter()._id }, next)
+})
 
 const Post = mongoose.model('Post', PostSchema);
 module.exports = Post;

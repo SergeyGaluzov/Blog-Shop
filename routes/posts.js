@@ -5,7 +5,6 @@ const router = express.Router()
 const Post = require('../models/post')
 const Comment = require('../models/comment')
 const utils = require('../util/utils')
-const fs = require('fs')
 
 router.get('/', (req, res) => {
     Post.find({ }).populate('user').exec((err, posts) => {
@@ -18,20 +17,17 @@ router.get('/:postId', (req, res) => {
     populate({ 
         path: 'comments', 
         populate: { path: 'user' },
-    }).exec((error, post) =>{
-        console.log(post)
+    }).exec((error, post) => {
         res.render('blog/post', { post: post, isLoggedIn: req.session.userId ? true : false });
     })
 })
 
 router.post('/:postId', (req, res) =>{
     if(req.body.delete){
-        Post.findByIdAndDelete(req.params.postId, (err, post) =>{
-            const imagePath = post.imagePath
-            if(imagePath){
-                fs.unlinkSync('static\\' + imagePath)
-            }
-            res.redirect('/posts');
+        Post.findById(req.params.postId, (err, post) =>{
+            Post.deleteOne(post, (err) =>{
+                res.redirect('/posts');
+            })
         })
     }
     else if(req.body.comment){
@@ -40,6 +36,7 @@ router.post('/:postId', (req, res) =>{
                 user: req.session.userId,
                 text: req.body.comment,
                 date: utils.dateHandler(new Date()),
+                post: post,
             })
             comment.save((err, comment) => {
                 post.comments.push(comment)

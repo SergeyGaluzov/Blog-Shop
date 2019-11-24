@@ -21,6 +21,10 @@ const CommentSchema = new mongoose.Schema({
       hours: { type: String, required: true },
       minutes: { type: String, required: true },
     },
+    post: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Post',
+    }
 });
 
 const Comment = mongoose.model('Comment', CommentSchema);

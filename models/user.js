@@ -48,17 +48,6 @@ UserSchema.statics.authenticate = function (username, password, callback) {
   })
 }
 
-UserSchema.statics.getUsernameById = function(userId, callback){
-  User.findById(userId, (err, user) =>{
-    if(user !== null){
-      return callback(user)
-    }
-    else{
-      return callback(null)
-    }
-  })
-} 
-
 const User = mongoose.model('User', UserSchema)
 
 module.exports = User;

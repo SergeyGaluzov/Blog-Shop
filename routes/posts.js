@@ -3,9 +3,10 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
+const Comment = require('../models/comment')
 const User = require('../models/user')
-const fs = require('fs')
 const utils = require('../util/utils')
+
 const multer  = require('multer')
 const storage = multer.diskStorage({
   destination: (req, file, callback) =>{
@@ -27,7 +28,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:postId', (req, res) => {
-    Post.findById(req.params.postId).populate('user').exec((error, post) =>{
+    Post.findById(req.params.postId).populate('user').
+    populate({ 
+        path: 'comments', 
+        populate: { path: 'user' },
+    }).exec((error, post) => {
         res.render('blog/post', { post: post, isLoggedIn: req.session.userId ? true : false });
     })
 })
@@ -53,12 +58,26 @@ router.post('/:postId/edit', upload.single('postImage'), function(req, response)
 
 router.post('/:postId', (req, res) =>{
     if(req.body.delete){
-        Post.findByIdAndDelete(req.params.postId, (err, post) =>{
-            const imagePath = post.imagePath
-            if(imagePath){
-                fs.unlinkSync('static\\' +imagePath)
-            }
-            res.redirect('/posts');
+        Post.findById(req.params.postId, (err, post) =>{
+            Post.deleteOne(post, (err) =>{
+                res.redirect('/posts');
+            })
+        })
+    }
+    else if(req.body.comment){
+        Post.findById(req.params.postId, (err, post) =>{
+            const comment = new Comment({
+                user: req.session.userId,
+                text: req.body.comment,
+                date: utils.dateHandler(new Date()),
+                post: post,
+            })
+            comment.save((err, comment) => {
+                post.comments.push(comment)
+                post.save((err, postUpdated) =>{
+                    res.redirect('/posts/' + postUpdated._id)
+                })
+            })
         })
     }
     else if (req.body.edit) {

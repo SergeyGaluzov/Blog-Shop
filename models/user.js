@@ -20,8 +20,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-    isAdmin: {
-        type: Boolean,
+    permissions: {
+      manageBlog: { type: Boolean },
+      manageShop: { type: Boolean },
+      manageUsers: { type: Boolean },
     }
 })
 

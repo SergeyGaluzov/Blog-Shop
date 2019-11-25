@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
         User.authenticate(req.body.username, req.body.password, user =>{
             if(user){
                 req.session.userId = user._id;
-                res.redirect('/newpost')
+                res.redirect('/')
             }
             else{
                 res.render('authorization/login', { isLoggedIn: req.session.userId ? true : false })

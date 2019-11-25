@@ -6,7 +6,7 @@ block style
 block content
   each post in posts
     h1 
-      a(href='/posts/' + post['_id']) #{post['title']}
+      a(href='/posts/post/' + post['_id']) #{post['title']}
     h2 by #{post['user']['username']}
     h3 date published: #{`${post['date'].day} ${post['date'].month} ${post['date'].year}`}
     h3 at #{`${post['date'].hours}:${post['date'].minutes}`}

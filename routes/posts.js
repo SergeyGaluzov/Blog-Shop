@@ -6,31 +6,80 @@ const Post = require('../models/post')
 const Comment = require('../models/comment')
 const utils = require('../util/utils')
 
+const multer  = require('multer')
+const storage = multer.diskStorage({
+  destination: (req, file, callback) =>{
+    callback(null, 'static/img/uploaded/')
+  },
+  filename: (req, file, callback) =>{
+    const splittedType = file.mimetype.split('/')
+    const extension = splittedType[splittedType.length - 1]
+    callback(null, Date.now() + '.' + extension)
+  }
+})
+const upload = multer({ storage: storage })
+
 router.get('/', (req, res) => {
     Post.find({ }).populate('user').exec((err, posts) => {
         res.render('blog/posts', { posts: posts, isLoggedIn: req.session.userId ? true : false })
     })
 })
 
-router.get('/:postId', (req, res) => {
+router.get('/post/:postId', (req, res) => {
     Post.findById(req.params.postId).populate('user').
     populate({ 
         path: 'comments', 
         populate: { path: 'user' },
-    }).exec((error, post) => {
-        res.render('blog/post', { post: post, isLoggedIn: req.session.userId ? true : false });
+    }).exec((error, post) => { 
+        const canEdit = post.user._id == req.session.userId
+        const isLoggedIn = req.session.userId ? true : false
+        res.render('blog/post', { 
+            post: post,
+            isLoggedIn: isLoggedIn,
+            canEdit: canEdit,
+        });
     })
 })
 
-router.post('/:postId', (req, res) =>{
-    if(req.body.delete){
-        Post.findById(req.params.postId, (err, post) =>{
-            Post.deleteOne(post, (err) =>{
-                res.redirect('/posts');
-            })
+router.get('/post/:postId/edit', function(req, response) { 
+    Post.findById(req.params.postId).populate('user').exec((error, post) =>{
+        const canEdit = post.user._id == req.session.userId
+        if(canEdit)
+            response.render('blog/editpost', { post: post, isLoggedIn: req.session.userId ? true : false });
+        else
+            response.redirect('/posts/post/' + req.params.postId)
+    })
+});
+
+router.post('/post/:postId/edit', upload.single('postImage'), function(req, res){
+    Post.findById(req.params.postId, (err, post) => {
+        const postEdit = {
+            title: utils.capitalize(req.body.title),
+            text: req.body.text,
+            imagePath: req.file ? req.file.path.replace('static', '') : post.imagePath, 
+        };
+        Post.updateOne(post, postEdit, (err) => {
+            res.redirect('/posts/post/' + req.params.postId);
         })
-    }
-    else if(req.body.comment){
+    });
+})
+
+router.get('/post/:postId/delete', (req, res) =>{
+    Post.findById(req.params.postId, (err, post) =>{
+        const canEdit = post.user._id == req.session.userId
+        if(canEdit){
+            Post.deleteOne(post, (err) =>{
+                res.redirect('/posts')
+            })
+        }
+        else{
+            res.redirect('/posts/post/' + req.params.postId)
+        }
+    })
+})
+
+router.post('/post/:postId', (req, res) =>{
+    if(req.body.comment) {
         Post.findById(req.params.postId, (err, post) =>{
             const comment = new Comment({
                 user: req.session.userId,
@@ -45,6 +94,9 @@ router.post('/:postId', (req, res) =>{
                 })
             })
         })
+    }
+    else {
+        res.redirect('/posts/' + req.params.postId)
     }
 })
 

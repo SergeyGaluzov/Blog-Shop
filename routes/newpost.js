@@ -36,7 +36,7 @@ router.post('/', upload.single('postImage'), function(req, response){
       text: req.body.text,
       title: utils.capitalize(req.body.title),
       date: utils.dateHandler(new Date()),
-      imagePath: req.file ? req.file.path.replace('static\\', '') : undefined,
+      imagePath: req.file ? req.file.path.replace('static', '') : undefined,
     };
     Post.create(postInfo, (err, post) => {
       response.redirect('/posts');

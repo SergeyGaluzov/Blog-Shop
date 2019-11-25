@@ -21,13 +21,22 @@ router.post('/', (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password,
-        isAdmin: false,
+        permissions:{
+            manageBlog: false,
+            manageShop: false,
+            manageUsers: false, 
+        }
     }
+    console.log(checkUsername(data.username),
+    checkPassword(data.password),
+    checkPasswordConfirmation(data.password, req.body.passwordConfirmation),
+    checkEmail(data.email))
     if(checkUsername(data.username) &&
     checkPassword(data.password) &&
     checkPasswordConfirmation(data.password, req.body.passwordConfirmation) &&
     checkEmail(data.email)){
         User.create(data, (err, user) => {
+            console.log(err, user)
             if(err){
                 res.redirect('/')
             }

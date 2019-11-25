@@ -21,7 +21,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 router.get('/', function(req, response) { 
-  response.render('blog/newpost', {isLoggedIn: req.session.userId ? true : false});
+  User.findById(req.session.userId, (err, user) =>{
+    if(user.permissions.manageBlog)
+      response.render('blog/newpost', {isLoggedIn: req.session.userId ? true : false});
+    else
+      response.redirect('/posts')
+  })
 });
 
 router.post('/', upload.single('postImage'), function(req, response){

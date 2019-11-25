@@ -20,6 +20,7 @@ const logoutRouter = require('./routes/logout')
 const registerRouter = require('./routes/register')
 const newpostRouter = require('./routes/newpost')
 const postsRouter = require('./routes/posts')
+const profileRouter = require('./routes/profile')
 const editpostRouter = require('./routes/editpost')
 
 const mongoose = require('mongoose')
@@ -43,6 +44,7 @@ app.use('/register', registerRouter)
 app.use('/logout', logoutRouter)
 app.use('/newpost', newpostRouter)
 app.use('/posts', postsRouter)
+app.use('/profile', profileRouter)
 app.use('/editpost', editpostRouter)
 
 app.listen(3000);

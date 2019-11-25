@@ -16,11 +16,34 @@ block content
             <hr>
             <p class="userName">#{post['user']['username']}</p>
             <p class="data">Опубликовано: #{`${post['date']['hours']}:${post['date']['minutes']}, ${post['date']['day']} ${post['date']['month']} ${post['date']['year']}`}</p>
-            if(post.userId === userId)
-              form(method='post')
-                input(type='submit' name='edit' class ="btn btn-info" value='Редактировать')
-                input(type='submit' name='delete' class ="btn btn-danger" value='Удалить')
+            if canEdit
+                a(href="/posts/post/"+ post['_id'] + "/edit") 
+                  input(type='button' name='edit' class ="btn btn-info" value='Редактировать')
+                a(href="/posts/post/"+ post['_id'] + "/delete") 
+                  input(type='button' name='delete' class ="btn btn-danger" value='Удалить')
           </div>
        </div>
     </div>
   </section>
+  <section>
+     <div class="row">
+        <div class="offset-lg-2 col-lg-8">
+           <div class="user_commet">
+              <p class="main_text">Комментарии</p>
+              if isLoggedIn
+                <form method="POST">
+                  <hr>
+                  <textarea class="user_commet_text" placeholder="Введите Ваш комментарий" maxlength="255" name="comment"></textarea>
+                  <input type="submit" class ="btn btn-success myBtnSuccess" value = "Отправить">
+                </form>
+              <hr>
+              each comment in post['comments']
+                <p class="userName"> #{comment['user']['username']}</p>
+                <p>#{comment['text']}</p>
+                <p class="data">Опубликовано: #{`${comment['date']['hours']}:${comment['date']['minutes']}, ${comment['date']['day']} ${comment['date']['month']} ${comment['date']['year']}`}</p>
+                <hr>
+           </div>
+        </div>
+     </div>
+  </section>
+  

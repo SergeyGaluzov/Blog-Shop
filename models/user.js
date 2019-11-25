@@ -20,14 +20,18 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-    isAdmin: {
-        type: Boolean,
+    permissions: {
+      manageBlog: { type: Boolean },
+      manageShop: { type: Boolean },
+      manageUsers: { type: Boolean },
     }
 })
 
 UserSchema.pre('save', function(next){
   let user = this
+  console.log('here')
   bcrypt.hash(user.password, 10, (error, hash) => {
+    console.log('now here')
     user.password = hash
     next()
   })
@@ -47,17 +51,6 @@ UserSchema.statics.authenticate = function (username, password, callback) {
       })
   })
 }
-
-UserSchema.statics.getUsernameById = function(userId, callback){
-  User.findById(userId, (err, user) =>{
-    if(user !== null){
-      return callback(user)
-    }
-    else{
-      return callback(null)
-    }
-  })
-} 
 
 const User = mongoose.model('User', UserSchema)
 

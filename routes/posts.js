@@ -32,6 +32,10 @@ router.get('/:postId', (req, res) => {
     })
 })
 
+router.get('/:pageNumber', (req, res) => {
+    res.send(req.params.pageNumber);
+})
+
 router.get('/:postId/edit', function(req, response) { 
     Post.findById(req.params.postId).populate('user').exec((error, post) =>{
       response.render('blog/editpost', { post: post, isLoggedIn: req.session.userId ? true : false });

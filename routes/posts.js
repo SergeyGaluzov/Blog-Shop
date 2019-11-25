@@ -27,45 +27,61 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:postId', (req, res) => {
+router.get('/post/:postId', (req, res) => {
     Post.findById(req.params.postId).populate('user').
     populate({ 
         path: 'comments', 
         populate: { path: 'user' },
-    }).exec((error, post) => {
-        res.render('blog/post', { post: post, isLoggedIn: req.session.userId ? true : false });
+    }).exec((error, post) => { 
+        const canEdit = post.user._id == req.session.userId
+        const isLoggedIn = req.session.userId ? true : false
+        res.render('blog/post', { 
+            post: post,
+            isLoggedIn: isLoggedIn,
+            canEdit: canEdit,
+        });
     })
 })
 
-router.get('/:postId/edit', function(req, response) { 
+router.get('/post/:postId/edit', function(req, response) { 
     Post.findById(req.params.postId).populate('user').exec((error, post) =>{
-      response.render('blog/editpost', { post: post, isLoggedIn: req.session.userId ? true : false });
+        const canEdit = post.user._id == req.session.userId
+        if(canEdit)
+            response.render('blog/editpost', { post: post, isLoggedIn: req.session.userId ? true : false });
+        else
+            response.redirect('/posts/post/' + req.params.postId)
     })
 });
 
-router.post('/:postId/edit', upload.single('postImage'), function(req, res){
+router.post('/post/:postId/edit', upload.single('postImage'), function(req, res){
     Post.findById(req.params.postId, (err, post) => {
         const postEdit = {
             title: utils.capitalize(req.body.title),
             text: req.body.text,
             imagePath: req.file ? req.file.path.replace('static', '') : post.imagePath, 
         };
-        Post.updateOne(post, postEdit, (err, post) => {
-            res.redirect('/posts');
+        Post.updateOne(post, postEdit, (err) => {
+            res.redirect('/posts/post/' + req.params.postId);
         })
     });
 })
 
-router.get('/:postId/delete', (req, res) =>{
+router.get('/post/:postId/delete', (req, res) =>{
     Post.findById(req.params.postId, (err, post) =>{
-        Post.deleteOne(post, (err) =>{
-            res.redirect('/posts');
-        })
+        const canEdit = post.user._id == req.session.userId
+        if(canEdit){
+            Post.deleteOne(post, (err) =>{
+                res.redirect('/posts')
+            })
+        }
+        else{
+            res.redirect('/posts/post/' + req.params.postId)
+        }
     })
 })
 
-router.post('/:postId', (req, res) =>{
-    if(req.body.comment){
+router.post('/post/:postId', (req, res) =>{
+    if(req.body.comment) {
         Post.findById(req.params.postId, (err, post) =>{
             const comment = new Comment({
                 user: req.session.userId,
@@ -81,7 +97,7 @@ router.post('/:postId', (req, res) =>{
             })
         })
     }
-    else{
+    else {
         res.redirect('/posts/' + req.params.postId)
     }
 })

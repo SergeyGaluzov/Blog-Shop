@@ -1,0 +1,50 @@
+extends ../layout
+
+block style 
+    link(rel='stylesheet', type='text/css' href='/css/form.css')
+
+block content
+    if(owner.permissions.manageUsers)
+        <section>
+           <div class="profile">
+              <div class="row">
+                 <div class="col-lg-12">
+                    <p class="main_text">Профиль #{owner.username}</p>
+                    <p class="main_text">Управление пользователями</p>
+                    <table>
+                       <tr>
+                          <td>Имя пользователя</td>
+                          <td>Email</td>
+                          <td>Может ли оставлять посты ?</td>
+                          <td>Может ли управлять магазином ?</td>
+                          <td>Может ли управлять правами других пользователей ?</td>
+                       </tr>
+                       each user in userList
+                            <tr>
+                               <td>#{user.username}</td>
+                               <td>#{user.email}</td>
+                               <td>
+                                  input(type="checkbox" class="radioBtn" checked=user.permissions.manageBlog)
+                               </td>
+                               <td>
+                                  input(type="checkbox" class="radioBtn" checked=user.permissions.manageShop)
+                               </td>
+                               <td>
+                                  input(type="checkbox" class="radioBtn" checked=user.permissions.manageUsers)
+                               </td>
+                            </tr>
+                    </table>
+                    <br>
+                 </div>
+              </div>
+           </div>
+        </section>
+    else
+    <div class="row">
+       <div class="offset-lg-3 col-lg-6">
+          <div class="error_form">
+             <p class="main_text">У вас нет прав на это! Обратитесь к администратору.</p>
+             <a href="/profile" class="btn btn-success">Назад</a>
+          </div>
+       </div>
+    </div>

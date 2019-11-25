@@ -1,0 +1,31 @@
+extends ../layout
+
+block style
+  link(rel='stylesheet', type='text/css' href='/css/form.css')
+
+block content
+  if isLoggedIn
+    <div class="row">
+       <div class="offset-lg-1 col-lg-10">
+          <form class="create_post" method="POST" enctype="multipart/form-data">
+             <p class="main_text">Редактировать запись</p>
+             input(type='text' name='title' class ='main_text' value=post.title)
+             <hr>
+             <textarea name="text">#{post['text']}</textarea>
+             <p>Изменить файл</p>
+             if post['imagePath']
+              img(src=post['imagePath'] width="100%")
+             <p><input name="postImage" id="add_file" type="file" accept="accept="image/*"></p>
+             <button class="btn btn-success">Отправить</button>
+          </form>
+       </div>
+    </div>
+  else
+    <div class="row">
+       <div class="offset-lg-3 col-lg-6">
+          <div class="error_form">
+             <p class="main_text">Упс... Вы не вошли в систему :(</p>
+             <a href="/login" class="btn btn-success">Войти</a>
+          </div>
+       </div>
+    </div>

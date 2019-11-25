@@ -34,13 +34,23 @@ const PostSchema = new mongoose.Schema({
   }
 });
 
-PostSchema.pre('findOneAndDelete', function(next){
+PostSchema.pre('deleteOne', function(next){
   const imagePath = this.getFilter().imagePath
   if(imagePath){
      fs.unlinkSync('static\\' + imagePath)
   }
   Post.model('Comment').deleteMany({ post: this.getFilter()._id }, next)
 })
+
+PostSchema.pre('updateOne', function(next){
+  const oldImage = this.getFilter().imagePath
+  const newImage = this.getUpdate().imagePath
+  if(newImage !== undefined && oldImage !== undefined){
+    fs.unlinkSync('static\\' + oldImage)
+  }
+  next()
+})
+
 
 const Post = mongoose.model('Post', PostSchema);
 module.exports = Post;

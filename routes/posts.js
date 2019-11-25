@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
 const Comment = require('../models/comment')
+const User = require('../models/user')
 const utils = require('../util/utils')
 
 const multer  = require('multer')
@@ -18,6 +19,7 @@ const storage = multer.diskStorage({
   }
 })
 const upload = multer({ storage: storage })
+
 
 router.get('/', (req, res) => {
     Post.find({ }).populate('user').exec((err, posts) => {
@@ -90,7 +92,7 @@ router.post('/post/:postId', (req, res) =>{
             comment.save((err, comment) => {
                 post.comments.push(comment)
                 post.save((err, postUpdated) =>{
-                    res.redirect('/posts/' + postUpdated._id)
+                    res.redirect('/posts/' + req.params.postId)
                 })
             })
         })

@@ -4,7 +4,7 @@ block style
     link(rel='stylesheet', type='text/css' href='/css/form.css')
 
 block content
-    if(owner.permissions.manageUsers)
+    if (owner.permissions.manageUsers)
         <section>
            <div class="profile">
               <div class="row">
@@ -18,9 +18,11 @@ block content
                           <td>Может ли оставлять посты ?</td>
                           <td>Может ли управлять магазином ?</td>
                           <td>Может ли управлять правами других пользователей ?</td>
+                          <td>Подтвердить</td>
                        </tr>
+                       - var counter = 0
                        each user in userList
-                            <tr>
+                            tr(id=counter)
                                <td>#{user.username}</td>
                                <td>#{user.email}</td>
                                <td>
@@ -32,7 +34,11 @@ block content
                                <td>
                                   input(type="checkbox" class="radioBtn" checked=user.permissions.manageUsers)
                                </td>
+                               <td>
+                                  input(type="button" class="edit btn btn-success" value="Изменить" disabled)
+                               </td>
                             </tr>
+                            - counter++
                     </table>
                     <br>
                  </div>
@@ -40,11 +46,14 @@ block content
            </div>
         </section>
     else
-    <div class="row">
-       <div class="offset-lg-3 col-lg-6">
-          <div class="error_form">
-             <p class="main_text">У вас нет прав на это! Обратитесь к администратору.</p>
-             <a href="/profile" class="btn btn-success">Назад</a>
-          </div>
-       </div>
-    </div>
+        <div class="row">
+           <div class="offset-lg-3 col-lg-6">
+              <div class="error_form">
+                 <p class="main_text">У вас нет прав на это! Обратитесь к администратору.</p>
+                 <a href="/profile" class="btn btn-success">Назад</a>
+              </div>
+           </div>
+        </div>
+
+block script
+    script(src="/js/editUserPermissions.js")

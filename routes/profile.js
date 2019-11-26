@@ -26,13 +26,24 @@ router.get('/:userId/manageusers', (req, res) =>{
     if(visitorId === ownerId){
         User.find({ }, (err, users) => { 
             User.findOne({ _id: ownerId }, (err, owner) =>{
-                res.render('profile/users', { userList: users, owner: owner })
+                res.render('profile/users', { userList: users, owner: owner, isLoggedIn: req.session.userId ? true : false })
             })
         })
     }
     else{
         res.redirect('/')
     }
+})
+
+router.post('/:userId/manageusers', (req, res) =>{
+    User.findOneAndUpdate({ username: req.body.username }, {permissions: req.body.permissions}, (err, user) =>{
+        if(err){
+            res.send('Error')
+        }
+        else {
+            res.send(user)
+        }
+    })
 })
 
 router.get('/:userId/manageblog', (req, res) =>{

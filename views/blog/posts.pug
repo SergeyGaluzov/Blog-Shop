@@ -5,28 +5,26 @@ block style
   link(rel='stylesheet', type='text/css' href='/css/pagination.css')
 
 block content
-
-  -var postsNumber = posts.length;
-  -var postPerPage = 2;
-  -var minPage = 1;
-  -var maxPage = Math.ceil(postsNumber/postPerPage);
-  -var firstPostNumber = (pageNumber)*postPerPage - 2;
-  -var lastPostNumber = (firstPostNumber + postPerPage - 1) < postsNumber ? firstPostNumber + postPerPage - 1 : postsNumber - 1;
-  -var j = firstPostNumber;
-    while j <= lastPostNumber
-      h1 
-        a(href='/posts/post/' + posts[j]['_id']) #{posts[j]['title']}
-      h2 by #{posts[j]['user']['username']}
-      h3 date published: #{`${posts[j]['date'].day} ${posts[j]['date'].month} ${posts[j]['date'].year}`}
-      h3 at #{`${posts[j]['date'].hours}:${posts[j]['date'].minutes}`}
-      p #{posts[j]['text']}
-      if posts[j]['imagePath']
-        img(src='../' + posts[j]['imagePath'])
-      hr
-      - j++
+  each post in posts
+    <div class="container">
+       <div class="row">
+          <div class="offset-lg-2 col-lg-8">
+             <div class="user_posts">
+                a(href='/posts/post/' + post['_id'] class="title_text")=post['title']
+                <hr>
+                if post['imagePath']
+                  img(src='../' + post['imagePath'])
+                <p> #{post['text']} </p>
+                <hr>
+                <p class= "userName"> от #{post['user']['username']}</p>
+                <p class="data" >Опубликовано: #{`${post['date'].day} ${post['date'].month} ${post['date'].year}`} в #{`${post['date'].hours}:${post['date'].minutes}`}</p>
+             </div>
+          </div>
+       </div>
+    </div>
   <div class="pagination">
-    -var g = minPage;
-    while g <= maxPage
-      a(href="/posts/" + g)= g
-      - g++
+    - var i = 1
+    while i <= pages
+      a(href="/posts/" + i)=i
+      - i++
   </div>

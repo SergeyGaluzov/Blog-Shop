@@ -22,9 +22,8 @@ const upload = multer({ storage: storage })
 
 
 router.get('/', (req, res) => {
-    Post.find({ }).sort('-date').populate('user').exec((err, posts) => {
-        res.render('blog/posts', { posts: posts, isLoggedIn: req.session.userId ? true : false })
-    })})
+    res.redirect('/posts/1')
+})
 
 router.get('/post/:postId', (req, res) => {
     Post.findById(req.params.postId).populate('user').
@@ -43,12 +42,16 @@ router.get('/post/:postId', (req, res) => {
 })
 
 router.get('/:pageNumber', (req, res) => {
-  Post.find({ }).sort({date: -1}).populate('user').exec((err, posts) => {
-    res.render('blog/posts', { posts: posts, pageNumber: req.params.pageNumber, isLoggedIn: req.session.userId ? true : false})
-})
+    const postsPerPage = 2;
+    const pageNumber = req.params.pageNumber - 1;
+    Post.find({ }).limit(postsPerPage).skip(pageNumber * postsPerPage).sort({ _id: -1 }).populate('user').exec((err, posts) => {
+        Post.count({}, (err, count) => {
+            res.render('blog/posts', { posts: posts, pages: Math.ceil(count / postsPerPage), isLoggedIn: req.session.userId ? true : false})
+        })
+    })
 })
 
-router.get('/:postId/edit', function(req, response) { 
+router.get('/post/:postId/edit', function(req, response) { 
     Post.findById(req.params.postId).populate('user').exec((error, post) =>{
         const canEdit = post.user._id == req.session.userId
         if(canEdit)

@@ -132,3 +132,13 @@ td{
   float:left;
   margin-right: 1rem;
 }
+
+.title_text{
+  color: black;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.title_text:hover{
+  color: black;
+}

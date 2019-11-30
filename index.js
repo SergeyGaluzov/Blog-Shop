@@ -22,6 +22,8 @@ const newpostRouter = require('./routes/newpost')
 const postsRouter = require('./routes/posts')
 const profileRouter = require('./routes/profile')
 const editpostRouter = require('./routes/editpost')
+const shopRouter = require('./routes/shop')
+const newproductRouter = require('./routes/newproduct')
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://vlad:eRNJy7BR8PSSqYnd@cluster0-ip7bm.mongodb.net/test?retryWrites=true&w=majority')
@@ -46,5 +48,7 @@ app.use('/newpost', newpostRouter)
 app.use('/posts', postsRouter)
 app.use('/profile', profileRouter)
 app.use('/editpost', editpostRouter)
+app.use('/shop', shopRouter)
+app.use('/shop/newproduct', newproductRouter)
 
 app.listen(3000);

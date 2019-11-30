@@ -1,0 +1,40 @@
+extends ../layout
+
+block style
+  link(rel='stylesheet', type='text/css' href='/css/form.css')
+
+block content
+  <div class="row">
+    <div class="offset-lg-1 col-lg-10">
+      <form class="create_post" method="POST" enctype="multipart/form-data">
+        <p class="main_text">Добавить новый товар</p>
+        <input name="title" type="text" placeholder="Введите название" class="main_text">
+        <hr>
+        <p class="main_text">Выберите тип товара</p>
+        <p class="main_text">
+          <select name="type">
+            <option value="hoodie">Худи</option>
+            <option value="t-shirt">Футболка</option>
+            <option value="sweatshirt">Кофта</option>
+          </select>
+        </p>
+        <hr>
+        <p class="main_text">Выберите размер товара</p>
+        <p class="main_text">
+          <select name="size">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
+        </p>
+        <hr>
+        <textarea name="description" placeholder="Введите описание товара"></textarea>
+        <p>Добавить картинку товара</p>
+        <p><input name="productImage" id="add_file" type="file" accept="accept=" image></p>
+        <button class="btn btn-success">Отправить</button>
+      </form>
+    </div>
+  </div>

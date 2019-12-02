@@ -9,5 +9,4 @@ router.get('/', (req, res) => {
       res.render('shop/products', { products: products });
     } )
 });
-
 module.exports = router

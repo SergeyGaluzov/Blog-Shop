@@ -1,0 +1,39 @@
+extends ../layout
+
+block style
+    link(rel='stylesheet',type='text/css' href='/css/stylesheet/960.css')
+    link(rel='stylesheet', type='text/css' href='/css/main.css')
+    link(rel='stylesheet', type='text/css' href='/css/stylesheet/screen.css')
+    link(rel='stylesheet', type='text/css' href='/css/stylesheet/color.css')
+
+block content
+    <div id="content" class="container_12">    
+        <div id="shopping_cart" class="grid_12">
+            <form id="cart" class="clearfix" action="checkout.html">
+                <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <th width="60">Изображение</th>
+                        <th width="320">Название</th>
+                        <th>Размер</th>
+                        <th>Количество</th>
+                        <th>Цена за единицу</th>
+                        <th>Всего</th>
+                    </tr>
+                    each product in products
+                        <tr class="even">
+                            <td valign="middle"><a href="product1.html"><img src="images/products/kpi1.jpg" width="60" height="60" alt="hudi1" /></a></td>
+                            <td valign="middle"><strong></strong>#{product['name']}</td>
+                            <td valign="middle">#{product['size']}</td>
+                            <td valign="middle">1</td>
+                            <td valign="middle">#{product['price']}</td>
+                            <td valign="middle">#{product['price']}</td>
+                        </tr>
+                </table>
+                <br />
+                <p class="s_total s_secondary_color last"><strong>Всего:</strong> TO DO</p>
+                <div class="clear"></div>
+                <br />
+                <a class="s_button_1 s_ddd_bgr left" href="/shop"><span class="s_text">Продолжить покупки</span></a>
+            </form>
+        </div>
+    </div>

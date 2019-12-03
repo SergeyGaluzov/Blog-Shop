@@ -16,6 +16,7 @@ router.post('/', (req, res) => {
         User.authenticate(req.body.username, req.body.password, user =>{
             if(user){
                 req.session.userId = user._id;
+                req.session.products = new Array();
                 res.redirect('/')
             }
             else{

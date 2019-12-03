@@ -3,7 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/product')
-
+const fs = require('fs');
 router.get('/', (req, res) => {
     Product.find({ }).exec((err, products) => {
       res.render('shop/products', { products: products });

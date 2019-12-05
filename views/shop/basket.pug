@@ -19,18 +19,22 @@ block content
                         <th>Цена за единицу</th>
                         <th>Всего</th>
                     </tr>
-                    each product in products
+                    - let sum = 0
+                    each product, index in products
                         <tr class="even">
-                            <td valign="middle"><a href="product1.html"><img src="images/products/kpi1.jpg" width="60" height="60" alt="hudi1" /></a></td>
-                            <td valign="middle"><strong></strong>#{product['name']}</td>
+                            <td valign="middle">
+                                img(src=product['imagePath'] width="60" height="60" alt="hudi1")
+                            </td>
+                            <td valign="middle"><strong>#{product['name']}</strong></td>
                             <td valign="middle">#{product['size']}</td>
-                            <td valign="middle">1</td>
+                            <td valign="middle">#{qties[index]}</td>
                             <td valign="middle">#{product['price']}</td>
-                            <td valign="middle">#{product['price']}</td>
+                            <td valign="middle">#{product['price'] * qties[index]}</td>
                         </tr>
+                        - sum += product['price'] * qties[index]
                 </table>
                 <br />
-                <p class="s_total s_secondary_color last"><strong>Всего:</strong> TO DO</p>
+                <p class="s_total s_secondary_color last"><strong>Всего:</strong> #{sum}</p>
                 <div class="clear"></div>
                 <br />
                 <a class="s_button_1 s_ddd_bgr left" href="/shop"><span class="s_text">Продолжить покупки</span></a>

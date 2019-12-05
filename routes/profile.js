@@ -24,7 +24,7 @@ router.get('/:userId/manageusers', (req, res) =>{
     const visitorId = req.session.userId
     const ownerId = req.params.userId
     if(visitorId === ownerId){
-        User.find({ }, (err, users) => { 
+        User.find({_id: { $nin: req.params.userId }}, (err, users) => { 
             User.findOne({ _id: ownerId }, (err, owner) =>{
                 res.render('profile/users', { userList: users, owner: owner, isLoggedIn: req.session.userId ? true : false })
             })

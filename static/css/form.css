@@ -2,7 +2,7 @@ body {
   background-color: green;
 }
 
-.reg_form,.login_form,.create_post,.error_form,.user_post,.post,.profile,.user_commet,.user_posts,.product{
+.reg_form,.login_form,.create_post,.error_form,.user_post,.post,.profile,.user_commet,.user_posts,.product,.productInfo{
   background-color: white;
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -16,6 +16,10 @@ body {
   height: 23rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
+}
+
+.productInfo{
+  height: 35rem;
 }
 
 .create_post,.user_post,.post{
@@ -35,13 +39,13 @@ body {
   transform: scale(1.1);
 }
 
-.main_text,.text,.userName,.data,.profile{
+.main_text,.text,.userName,.data,.profile,.productInfoText{
   text-align: center;
   font-weight: 500;
   font-size: 1rem;
 }
 
-.userName,.data{
+.userName,.data,.productInfoText{
   text-align: left;
   text-transform: uppercase;
   font-size:0.8rem;
@@ -161,6 +165,11 @@ td{
   margin-right: 1rem;
 }
 
+.imgProductInfo{
+  width: 25rem;
+  float: left;
+}
+
 .price{
   background-color: green;
   padding: 0.5rem;
@@ -173,4 +182,9 @@ td{
   margin-top: 1rem;
   color:white;
   padding-right: 0.5rem;
+}
+
+.buy{
+  color:white;
+  width: 62%;
 }

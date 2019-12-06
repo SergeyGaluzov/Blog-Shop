@@ -7,7 +7,7 @@ const fs = require('fs');
 
 router.get('/', (req, res) => {
     Product.find({ }).exec((err, products) => {
-      res.render('shop/products', { products: products });
+      res.render('shop/products', { products: products, isLoggedIn: req.session.userId ? true : false });
     } )
 });
 
@@ -34,7 +34,7 @@ router.get('/product/:productId/add', (req, res) => {
 
 router.get('/basket', (req, res) => {
   Product.find({ _id: req.session.products }, (err, products) =>{
-    res.render('shop/basket', { products: products, qties: req.session.qties });
+    res.render('shop/basket', { products: products, qties: req.session.qties, isLoggedIn: req.session.userId ? true : false });
   })
 });
 

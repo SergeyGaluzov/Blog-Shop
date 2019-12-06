@@ -76,10 +76,8 @@ router.post('/post/:postId/edit', upload.single('postImage'), function(req, res)
 
 router.get('/post/:postId/delete', (req, res) =>{
     Post.findById(req.params.postId, (err, post) =>{
-        console.log(post, 1)
         const canEdit = post.user._id == req.session.userId
         if(canEdit){
-            console.log(post, 2)
             Post.deleteOne(post, (err) =>{
                 res.redirect('/posts')
             })

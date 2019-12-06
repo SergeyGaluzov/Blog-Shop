@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 router.get('/', function(req, response) { 
-  if(req.session){
+  if(req.session.userId){
     User.findById(req.session.userId, (err, user) =>{
       if(user.permissions.manageBlog)
         response.render('blog/newpost', {isLoggedIn: req.session.userId ? true : false});

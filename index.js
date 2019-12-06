@@ -1,6 +1,7 @@
 'use strict'
 
 const express = require('express')
+const PORT = process.env.PORT || 3000;
 const app = express()
 
 const path = require('path')
@@ -51,4 +52,4 @@ app.use('/editpost', editpostRouter)
 app.use('/shop', shopRouter)
 app.use('/shop/newproduct', newproductRouter)
 
-app.listen(3000);
+app.listen(PORT);

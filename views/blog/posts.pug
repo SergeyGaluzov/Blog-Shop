@@ -18,7 +18,7 @@ block content
                 a(href='/posts/post/' + post['_id'] class="title_text")=post['title']
                 <hr>
                 if post['imagePath']
-                  img(src='../' + post['imagePath'])
+                  img(src=post['imagePath'])
                 <p> #{post['text']} </p>
                 <hr>
                 <p class= "userName"> от #{post['user']['username']}</p>

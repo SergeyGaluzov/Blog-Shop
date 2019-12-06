@@ -4,7 +4,8 @@ body {
 
 .reg_form,.login_form,.create_post,.error_form,.user_post,.post,.profile,.user_commet,.user_posts,.product,.productInfo,.productBasket{
   background-color: white;
-  margin-top: 5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
   border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
@@ -224,6 +225,5 @@ td{
 }
 
 #addpost{
-  margin-bottom: -3rem;
   margin-top: 1.5rem;
 }

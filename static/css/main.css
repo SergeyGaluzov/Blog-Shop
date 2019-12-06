@@ -100,11 +100,3 @@ a:hover{
 .col-lg-9{
     margin-left: 1rem;
 }
-
-body{
-    background-color: green;
-}
-
-#header{
-    min-height: 50px;
-}

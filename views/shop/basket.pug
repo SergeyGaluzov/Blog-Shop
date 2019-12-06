@@ -1,43 +1,35 @@
 extends ../layout
 
 block style
-    link(rel='stylesheet',type='text/css' href='/css/stylesheet/960.css')
-    link(rel='stylesheet', type='text/css' href='/css/main.css')
-    link(rel='stylesheet', type='text/css' href='/css/stylesheet/screen.css')
-    link(rel='stylesheet', type='text/css' href='/css/stylesheet/color.css')
+    link(rel='stylesheet', type='text/css' href='/css/form.css')
 
 block content
-    <div id="content" class="container_12">    
-        <div id="shopping_cart" class="grid_12">
-            <form id="cart" class="clearfix" action="checkout.html">
-                <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <th width="60">Изображение</th>
-                        <th width="320">Название</th>
-                        <th>Размер</th>
-                        <th>Количество</th>
-                        <th>Цена за единицу</th>
-                        <th>Всего</th>
-                    </tr>
-                    - let sum = 0
-                    each product, index in products
-                        <tr class="even">
-                            <td valign="middle">
-                                img(src=product['imagePath'] width="60" height="60" alt="hudi1")
-                            </td>
-                            <td valign="middle"><strong>#{product['name']}</strong></td>
-                            <td valign="middle">#{product['size']}</td>
-                            <td valign="middle">#{qties[index]}</td>
-                            <td valign="middle">#{product['price']}</td>
-                            <td valign="middle">#{product['price'] * qties[index]}</td>
-                        </tr>
-                        - sum += product['price'] * qties[index]
-                </table>
-                <br />
-                <p class="s_total s_secondary_color last"><strong>Всего:</strong> #{sum}</p>
-                <div class="clear"></div>
-                <br />
-                <a class="s_button_1 s_ddd_bgr left" href="/shop"><span class="s_text">Продолжить покупки</span></a>
-            </form>
+    <div class="row">
+        <div class="offset-lg-1 col-lg-10 inputBasket">Ваши заказы</div>
+    </div>
+    <section>
+        <div class="row">
+            <div class="offset-lg-1 col-lg-10">
+                - let sum = 0
+                each product, index in products
+                    <div class="productBasket">
+                        <img src="../images/products/kpi3.jpg" class="imgProductBasket">
+                        <p class="description">#{product['name']}</p>
+                        <hr>
+                        <p class="description">Размер: #{product['size']}</p>
+                        <p class="description">Цена: #{product['price']} ГРН</p>
+                        <p class="description">Количество: #{qties[index]}</p>
+                        <p class="description">Всего: #{product['price'] * qties[index]} ГРН</p>
+                        <p><button class="btn btn-outline-success">РЕДАКТИРОВАТЬ</button></p>
+                    </div>
+                    - sum += product['price'] * qties[index]
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div class="offset-lg-1 col-lg-10">
+            <p class="price">ВСЕГО: #{sum} ГРН</p>
+            <button type="button" class="btn btn-warning btn-lg btn-block agreeOrder">ПОДТВЕРДИТЬ ЗАКАЗ</button>
         </div>
     </div>
+

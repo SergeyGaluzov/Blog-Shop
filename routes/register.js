@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const mailer = require('./mailer')
 
 router.get('/', (req, res) => {
     if(req.session.userId === undefined)
@@ -41,10 +42,19 @@ router.post('/', (req, res) => {
                 res.redirect('/')
             }
             else {
+                // req.session.userId = user._id
+                // // res.redirect('/')
+                const message = {
+                    from:'Mailer Test <gladys.turner@ethereal.email>',
+                    to: req.body.email,
+                    subject:'You must confirm your account',
+                    text:'Подтвердите свой аккаунт'
+                }
+
+                mailer(message)
                 req.session.userId = user._id
                 res.redirect('/')
-            }
-                
+            }    
         })
     }
 })

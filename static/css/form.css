@@ -141,4 +141,81 @@ td{
 
 .title_text:hover{
   color: black;
+<<<<<<< Updated upstream
+=======
+  text-decoration: none;
+}
+
+.imgProduct{
+  width: 15rem;
+  float: left;
+  margin-right: 1rem;
+}
+
+.imgProductInfo{
+  width: 25rem;
+  float: left;
+}
+
+.imgProductBasket{
+  width: 16rem;
+  float: left;
+  margin-right: 1rem;
+}
+
+.price{
+  background-color: green;
+  padding: 0.5rem;
+  color:white;
+  font-weight: 500;
+  text-align: center;
+}
+
+.basket{
+  margin-top: 1rem;
+  color:white;
+  padding-right: 0.5rem;
+  margin-left: -0.7rem;
+}
+
+.buy{
+  color:white;
+  width: 62%;
+}
+
+.inputBasket{
+  font-size: 2rem;
+  background-color:white;
+  color:black;
+  text-align: center;
+  margin-top: 1rem;
+  padding:1rem;
+  font-weight: 500;
+  border-radius: 1.5rem;
+}
+
+.agreeOrder{
+  border-radius:3rem;
+  color:white;
+}
+
+.agreeOrder:hover{
+  color:white;
+}
+
+.big{
+  font-size: 1.5rem;
+}
+
+.link{
+  color: black;
+}
+
+.link:hover{
+  color: green;
+}
+
+#addpost{
+  margin-top: 1.5rem;
+>>>>>>> Stashed changes
 }

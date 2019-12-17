@@ -24,7 +24,8 @@ const profileRouter = require('./routes/profile')
 const editpostRouter = require('./routes/editpost')
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://vlad:eRNJy7BR8PSSqYnd@cluster0-ip7bm.mongodb.net/test?retryWrites=true&w=majority')
+mongoose.connect('mongodb://localhost:27017/kpi', {useNewUrlParser: true})
+//mongoose.connect('mongodb+srv://vlad:eRNJy7BR8PSSqYnd@cluster0-ip7bm.mongodb.net/test?retryWrites=true&w=majority')
 const database = mongoose.connection
 
 database.on('error', error => console.error(error))

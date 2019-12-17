@@ -49,4 +49,24 @@ router.post('/', (req, res) => {
     }
 })
 
+<<<<<<< Updated upstream
+=======
+router.get('/:userId/:verification', (req, res) => {
+    User.findById(req.params.userId, (err, user) =>{
+        if(user.verify === req.params.verification){
+            const data = {
+                permissions: {
+                    manageBlog: true,
+                    manageShop: false,
+                    manageUsers: false,
+                }
+            }
+            User.updateOne(user, data, (err, user) => {
+                res.redirect('/posts')
+            })
+        }
+    })
+})
+
+>>>>>>> Stashed changes
 module.exports = router

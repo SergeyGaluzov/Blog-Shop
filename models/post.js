@@ -36,8 +36,10 @@ const PostSchema = new mongoose.Schema({
 
 PostSchema.pre('deleteOne', function(next){
   const imagePath = this.getFilter().imagePath
+  console.log(imagePath, 1)
   if(imagePath){
-     fs.unlinkSync('static\\' + imagePath)
+    console.log(imagePath, 2)
+    fs.unlinkSync('static\\' + imagePath)
   }
   Post.model('Comment').deleteMany({ post: this.getFilter()._id }, next)
 })

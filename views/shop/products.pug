@@ -15,7 +15,7 @@ block content
                 <div class="product">
                     <p class="main_text">#{product['name']}</p>
                     <hr>
-                    <img src= "../images/products/kpi6.jpg" class="imgProduct">
+                    <img src= "../images/products/#{product['imagePath']}" class="imgProduct">
                     <p>#{product['description']}</p>
                     <p>
                         a(href="/shop/product/" + product['_id']) <button class="btn btn-outline-success">УЗНАТЬ БОЛЬШЕ О ПРОДУКТЕ</button>

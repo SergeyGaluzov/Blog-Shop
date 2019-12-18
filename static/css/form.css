@@ -52,7 +52,7 @@ body {
 .userName,.data,.productInfoText,.description{
   text-align: left;
   text-transform: uppercase;
-  font-size:1rem;
+  font-size:0.8rem;
 }
 
 .main_text{

@@ -44,9 +44,17 @@ router.get('/post/:postId', (req, res) => {
 router.get('/:pageNumber', (req, res) => {
     const postsPerPage = 2;
     const pageNumber = req.params.pageNumber - 1;
-    Post.find({ }).limit(postsPerPage).skip(pageNumber * postsPerPage).sort({ _id: -1 }).populate('user').exec((err, posts) => {
-        Post.count({}, (err, count) => {
-            res.render('blog/posts', { posts: posts, pages: Math.ceil(count / postsPerPage), isLoggedIn: req.session.userId ? true : false})
+    User.findById(req.session.userId, (err, user) =>{
+        const manageBlog = user ? user.permissions.manageBlog : false
+        Post.find({ }).limit(postsPerPage).skip(pageNumber * postsPerPage).sort({ _id: -1 }).populate('user').exec((err, posts) => {
+            Post.count({}, (err, count) => {
+                res.render('blog/posts', { 
+                    posts: posts, 
+                    pages: Math.ceil(count / postsPerPage), 
+                    isLoggedIn: req.session.userId ? true : false, 
+                    manageBlog: manageBlog,
+                })
+            })
         })
     })
 })
@@ -100,7 +108,7 @@ router.post('/post/:postId', (req, res) =>{
             comment.save((err, comment) => {
                 post.comments.push(comment)
                 post.save((err, postUpdated) =>{
-                    res.redirect('/posts/' + req.params.postId)
+                    res.redirect('/posts/post/' + req.params.postId)
                 })
             })
         })

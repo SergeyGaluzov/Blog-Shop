@@ -24,6 +24,9 @@ const UserSchema = new mongoose.Schema({
       manageBlog: { type: Boolean },
       manageShop: { type: Boolean },
       manageUsers: { type: Boolean },
+    },
+    verify:{
+      type: String,
     }
 })
 

@@ -12,7 +12,14 @@ router.get('/', (req, res) => {
 });
 
 router.get('/product/:productId', (req, res) => {
-  res.redirect('/shop')
+  Product.findById(req.params.productId, (err, product) => {
+    if(err){
+      res.redirect('/shop')
+    }
+    else{
+      res.render('shop/product', {product: product, isLoggedIn: req.session.userId ? true : false })
+    }
+  })
 });
 
 router.get('/product/:productId/add', (req, res) => {
@@ -37,5 +44,11 @@ router.get('/basket', (req, res) => {
     res.render('shop/basket', { products: products, qties: req.session.qties, isLoggedIn: req.session.userId ? true : false });
   })
 });
+
+router.get('/basket/clear', (req, res) => {
+  req.session.products = []
+  res.redirect('/shop/basket')
+});
+
 
 module.exports = router

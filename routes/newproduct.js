@@ -45,7 +45,6 @@ router.get('/', function(req, response) {
         i++;
       }
       i = 0;
-      console.log(productInfo);
       Product.create(productInfo);
     }
     response.redirect('/shop');

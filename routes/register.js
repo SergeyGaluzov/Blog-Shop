@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const nodemailer = require ('nodemailer')
 
 router.get('/', (req, res) => {
     if(req.session.userId === undefined)
@@ -21,36 +22,42 @@ router.post('/', (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password,
-        permissions:{
+        permissions:{   
             manageBlog: false,
             manageShop: false,
             manageUsers: false, 
         }
     }
-    console.log(checkUsername(data.username),
-    checkPassword(data.password),
-    checkPasswordConfirmation(data.password, req.body.passwordConfirmation),
-    checkEmail(data.email))
+
     if(checkUsername(data.username) &&
     checkPassword(data.password) &&
     checkPasswordConfirmation(data.password, req.body.passwordConfirmation) &&
     checkEmail(data.email)){
+        data['verify'] = (Math.random() * 10000).toPrecision(4)
         User.create(data, (err, user) => {
-            console.log(err, user)
             if(err){
                 res.redirect('/')
             }
             else {
+                nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'thecreatorivan@gmail.com',
+                        pass: 'W3t-RPp-QDX-Rgx',
+                    }
+                }).sendMail({
+                    from:'thecreatorivan@gmail.com',
+                    to: user.email,
+                    subject:'You must confirm your account',
+                    text:'Подтвердите свой аккаунт: 127.0.0.1:3000/register/' + user._id + '/' + user.verify
+                })
                 req.session.userId = user._id
                 res.redirect('/')
-            }
-                
+            }    
         })
     }
 })
 
-<<<<<<< Updated upstream
-=======
 router.get('/:userId/:verification', (req, res) => {
     User.findById(req.params.userId, (err, user) =>{
         if(user.verify === req.params.verification){
@@ -62,11 +69,10 @@ router.get('/:userId/:verification', (req, res) => {
                 }
             }
             User.updateOne(user, data, (err, user) => {
-                res.redirect('/posts')
+                res.redirect('/blog')
             })
         }
     })
 })
 
->>>>>>> Stashed changes
 module.exports = router

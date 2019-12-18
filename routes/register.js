@@ -44,6 +44,9 @@ router.post('/', (req, res) => {
                     auth: {
                         user: 'thecreatorivan@gmail.com',
                         pass: 'W3t-RPp-QDX-Rgx',
+                    },
+                    tls:{
+                        rejectUnauthorized: false,
                     }
                 }).sendMail({
                     from:'thecreatorivan@gmail.com',
@@ -69,7 +72,7 @@ router.get('/:userId/:verification', (req, res) => {
                 }
             }
             User.updateOne(user, data, (err, user) => {
-                res.redirect('/blog')
+                res.redirect('/posts')
             })
         }
     })

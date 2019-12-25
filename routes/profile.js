@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user') 
+const Post = require('../models/post')
 
 router.get('/', function(req, res){
     User.findById(req.session.userId, (err, user) =>{
@@ -10,9 +11,9 @@ router.get('/', function(req, res){
             res.redirect('/login')
         else
             if (user.permissions.manageUsers)
-                res.redirect('/profile/' + user._id + '/manageusers')
+                res.redirect('/profile/' + user._id + '/manage')
             else if (user.permissions.manageBlog)
-                res.redirect('/profile/' + user._id + '/manageblog')
+                res.redirect('/profile/' + user._id + '/posts')
             else if (user.permissions.manageShop)
                 res.redirect('/profile/' + user._id + '/manageshop')
             else
@@ -20,7 +21,7 @@ router.get('/', function(req, res){
     })
 })
 
-router.get('/:userId/manageusers', (req, res) =>{
+router.get('/:userId/manage', (req, res) =>{
     const visitorId = req.session.userId
     const ownerId = req.params.userId
     if(visitorId === ownerId){
@@ -46,8 +47,19 @@ router.post('/:userId/manageusers', (req, res) =>{
     })
 })
 
-router.get('/:userId/manageblog', (req, res) =>{
-    res.redirect('/')
+router.get('/:userId/posts', (req, res) =>{
+    const visitorId = req.session.userId
+    const ownerId = req.params.userId
+    const isOwner = req.session.userId === req.params.userId
+    Post.find({ user: ownerId })
+    .populate('user')
+    .exec((err, posts) =>{
+        User.findById(ownerId, (err, user) =>{
+            if(user)
+                res.render('profile/posts', { posts: posts, user: user, isOwner: isOwner})
+        })
+    })
+    //res.redirect('/')
 })
 
 router.get('/:userId/manageshop', (req, res) =>{

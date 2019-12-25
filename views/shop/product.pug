@@ -1,0 +1,24 @@
+extends ../layout 
+block style
+  link(rel='stylesheet', type='text/css' href='/css/form.css')
+
+block content
+    <section>
+        <div class="row">
+            <div class="offset-lg-1 col-lg-10">
+                <div class="productInfo">
+                    <p class="main_text">#{product.name}</p> <hr>
+                    <img src= "/images/products/kpi2.jpg" class="imgProductInfo">
+                    <p><#{product.description}/p>
+                    <p class="productInfoText">В наличии: #{product.quantity}</p>
+                    <p class="productInfoText">Цвет: <#{product.color}</p>
+                    <p class="productInfoText">Тип: #{product.type}</p>
+                    <p class="productInfoText">Состав: #{product.madeFrom}</p>
+                    <p class="productInfoText">Размер: #{product.size}</p>
+                    <p class="price">#{product.price} ГРН</p>
+                    a(href="/shop/product/" + product._id + "/add") <button class="btn btn-warning buy">КУПИТЬ</button>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </section>

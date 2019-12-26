@@ -27,8 +27,9 @@ const shopRouter = require('./routes/shop')
 const newproductRouter = require('./routes/newproduct')
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/kpi', {useNewUrlParser: true})
-//mongoose.connect('mongodb+srv://vlad:eRNJy7BR8PSSqYnd@cluster0-ip7bm.mongodb.net/test?retryWrites=true&w=majority')
+// mongoose.connect('mongodb://localhost:27017/kpi', {useNewUrlParser: true})
+// mongoose.connect('mongodb+srv://vlad:eRNJy7BR8PSSqYnd@cluster0-ip7bm.mongodb.net/test?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://Sergey:Sergey200156@cluster0-ip7bm.mongodb.net/test?retryWrites=true&w=majority')
 const database = mongoose.connection
 
 database.on('error', error => console.error(error))
